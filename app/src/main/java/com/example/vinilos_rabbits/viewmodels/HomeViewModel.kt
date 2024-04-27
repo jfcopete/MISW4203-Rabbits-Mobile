@@ -34,7 +34,6 @@ class HomeViewModel: ViewModel() {
                 val response = VinilosApi.retrofitService.getAlbums()
                 HomeUiState.Success(response)
             } catch (e: IOException){
-                Log.e("***********+", e.toString())
                 HomeUiState.Error
             }
         }

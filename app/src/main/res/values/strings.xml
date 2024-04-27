@@ -4,4 +4,6 @@
     <string name="welcome_description">Expertos en musica</string>
     <string name="loading">Cargando</string>
     <string name="loading_failed">Valide su acceso a internet</string>
+    <string name="back_button">Regresar</string>
+    <string name="album_detail_navbar_title">Detalle del album</string>
 </resources>
