@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Vinilos rabbits</string>
+    <string name="welcome_title">Bienvenido a vinilos</string>
+    <string name="welcome_description">Expertos en musica</string>
+    <string name="loading">Cargando</string>
+    <string name="loading_failed">Valide su acceso a internet</string>
+</resources>
