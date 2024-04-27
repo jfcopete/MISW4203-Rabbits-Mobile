@@ -6,4 +6,11 @@ import com.example.vinilos_rabbits.R
 enum class VinilosScreen(@StringRes val title: Int) {
     Start(title = R.string.app_name),
     AlbumDetail(title = R.string.album_detail_navbar_title),
+    Artist(title = R.string.artist),
+    Collector(title = R.string.collector),
+}
+
+enum class VinilosCategory(@StringRes val title: Int){
+    Album(title = R.string.album),
+    Artist(title = R.string.artist),
 }
