@@ -38,6 +38,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.vinilos_rabbits.components.VinilosBottomBar
 import com.example.vinilos_rabbits.utils.VinilosScreen
 
 
@@ -60,6 +61,13 @@ fun HomeApp() {
                 modifier = Modifier.background(Color.Blue),
                 canNavigateBack = navController.previousBackStackEntry != null,
                 navigateUp = { navController.navigateUp() }
+            )
+        },
+        bottomBar = {
+            VinilosBottomBar(
+                currentCategory = currentScreen,
+                navController = navController,
+                modifier = Modifier.background(Color.Green)
             )
         }
     ) { innerPadding ->
@@ -87,6 +95,21 @@ fun HomeApp() {
                         .padding(dimensionResource(R.dimen.padding_medium))
                 )
             }
+            composable(route = VinilosScreen.Artist.name){
+                ArtistListScreen(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(dimensionResource(R.dimen.padding_medium))
+                )
+            }
+            composable(route = VinilosScreen.Collector.name){
+                CollectorListScreen(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(dimensionResource(R.dimen.padding_medium))
+                )
+            }
+
 
         }
 
