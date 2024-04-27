@@ -5,5 +5,11 @@
     <string name="loading">Cargando</string>
     <string name="loading_failed">Valide su acceso a internet</string>
     <string name="back_button">Regresar</string>
+    
+    <string name="album">Album</string>
+    <string name="artist">Artista</string>
+    <string name="collector">Coleccionista</string>
     <string name="album_detail_navbar_title">Detalle del album</string>
+    <string name="artist_detail_navbar_title">Detalle de Artista</string>
+    <string name="collector_detail_navbar_title">Detalle de Coleccionista</string>
 </resources>
