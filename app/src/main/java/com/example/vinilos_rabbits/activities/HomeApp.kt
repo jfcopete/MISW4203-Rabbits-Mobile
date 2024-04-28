@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -51,6 +52,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.vinilos_rabbits.components.VinilosBottomBar
 import com.example.vinilos_rabbits.utils.VinilosScreen
+import androidx.compose.foundation.lazy.items
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -141,12 +143,6 @@ fun HomeScreen(
         modifier = modifier
             .padding(1.dp),
     ) {
-        WelcomeText()
-        Row(
-            modifier = modifier,
-            horizontalArrangement = Arrangement.Center
-
-        ) {
             when (albumUiState) {
                 is HomeUiState.Loading -> LoadingScreen()
                 is HomeUiState.Error -> ErrorScreen()
@@ -155,7 +151,6 @@ fun HomeScreen(
                     albumUiState.albums,
                 )
             }
-        }
 
     }
 
@@ -176,19 +171,18 @@ fun AlbumsList(
     onAlbumDetails: () -> Unit,
     albums: List<AlbumSerialized>,
 ) {
-    Column (
+    LazyColumn (
     ) {
-        albums.forEach { album ->
+        items(albums) {album ->
             Box(
-                modifier = Modifier.padding(horizontal =  0.dp, vertical = 10.dp)
-            ){
+                modifier = Modifier.padding(bottom = 15.dp)
+            ) {
                 AlbumCard(
                     img = album.cover,
                     name = album.name,
                     description = album.genre,
                     onAlbumDetails = onAlbumDetails
                 )
-
             }
         }
     }
