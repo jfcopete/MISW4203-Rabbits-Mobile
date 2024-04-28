@@ -11,7 +11,7 @@ data class AlbumSerialized(
     val releaseDate: String,
     val genre: String,
     val recordLabel: String,
-    val tracks: List<String>,
-    val performers: List<String>,
-    val comments: List<String>,
+    val tracks: List<TrackSerialized>?,
+    val performers: List<PerformerSerialized>?,
+    val comments: List<Comment>?
     )
