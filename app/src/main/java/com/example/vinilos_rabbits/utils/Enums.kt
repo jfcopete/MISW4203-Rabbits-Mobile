@@ -14,3 +14,4 @@ enum class VinilosCategory(@StringRes val title: Int){
     Album(title = R.string.album),
     Artist(title = R.string.artist),
 }
+

@@ -10,6 +10,6 @@ fun AlbumDetails(
     modifier: Modifier = Modifier,
 ){
     Column(modifier = modifier) {
-        Text(text = "Details")
+        Text(text = "Album Details")
     }
 }
