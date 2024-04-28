@@ -1,14 +1,9 @@
 package com.example.vinilos_rabbits
 
-import androidx.test.espresso.Espresso.onView
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withText
-import androidx.test.ext.junit.rules.ActivityScenarioRule
-import androidx.test.platform.app.InstrumentationRegistry
-import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.compose.ui.test.onNodeWithText
 import androidx.test.filters.LargeTest
+import com.example.vinilos_rabbits.activities.HomeApp
 import com.example.vinilos_rabbits.activities.HomeScreen
 import com.example.vinilos_rabbits.services.Comment
 import com.example.vinilos_rabbits.services.AlbumSerialized
@@ -17,9 +12,6 @@ import com.example.vinilos_rabbits.services.TrackSerialized
 import com.example.vinilos_rabbits.viewmodels.HomeUiState
 
 import org.junit.Test
-import org.junit.runner.RunWith
-
-import org.junit.Assert.*
 import org.junit.Rule
 
 /**
@@ -27,31 +19,24 @@ import org.junit.Rule
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-@Suppress("DEPRECATION")
-@RunWith(AndroidJUnit4::class)
 @LargeTest
-class InstrumentedTest {
-    @get:Rule
-    val activityRule = ActivityScenarioRule(MainActivity::class.java)
+class InstrumentedTestHU01 {
 
     @get:Rule
-    val composeTestRule = createComposeRule()
-    @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.vinilos_rabbits", appContext.packageName)
-    }
+    val rule = createComposeRule()
+
+    //Test titulo de aplicacion renderizado
     @Test
     fun checkWelcomeTextDisplayed() {
-        Thread.sleep(5000)
-        onView(withText("Vinilos rabbits")).check(matches(isDisplayed()))
-        Thread.sleep(5000)
+        rule.setContent {
+            HomeApp()
+        }
+        rule.onNodeWithText("Vinilos rabbits").assertExists()
     }
 
+    //Test albums de prueba renderizados
     @Test
-    fun albumsListDisplayedWithAtLeastTwoAlbums() {
-        // Simulamos la lista de álbumes con al menos dos elementos
+    fun checkAlbumsDisplayed() {
         val albums = listOf(
             AlbumSerialized(
                 1,
@@ -78,14 +63,17 @@ class InstrumentedTest {
                 listOf(Comment(1,"rating",1),Comment(2,"rating",1))
             )
         )
-        // Configuramos el estado de la pantalla Home
-        composeTestRule.setContent {
+
+        rule.setContent {
             HomeScreen(
                 onAlbumDetails = {},
-                albumUiState = HomeUiState.Success(albums)
-            )
+                albumUiState = HomeUiState.Success(albums),
+
+                )
         }
-        onView(withText("Description 1")).check(matches(isDisplayed()))
-        onView(withText("Description 2")).check(matches(isDisplayed()))
+        rule.onNodeWithText("Description 1").assertExists()
+        rule.onNodeWithText("Description 2").assertExists()
+
     }
 }
+
