@@ -12,6 +12,6 @@ fun CollectorListScreen(
     Column(
         modifier = modifier
     ) {
-        Text(text = "Artist")
+        Text(text = "List of Collectors")
     }
 }

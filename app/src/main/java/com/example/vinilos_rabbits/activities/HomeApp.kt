@@ -8,10 +8,16 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -58,7 +64,7 @@ fun HomeApp() {
             VinilosTopAppBar(
                 currentScreen = currentScreen,
                 //scrollBehavior = scrollBehavior,
-                modifier = Modifier.background(Color.Blue),
+//                modifier = Modifier.background(Color.Blue),
                 canNavigateBack = navController.previousBackStackEntry != null,
                 navigateUp = { navController.navigateUp() }
             )
@@ -67,7 +73,8 @@ fun HomeApp() {
             VinilosBottomBar(
                 currentCategory = currentScreen,
                 navController = navController,
-                modifier = Modifier.background(Color.Green)
+                canNavigateBack = false
+//                canNavigateBack = navController.previousBackStackEntry != null,
             )
         }
     ) { innerPadding ->
@@ -80,7 +87,10 @@ fun HomeApp() {
                 val homeViewModel: HomeViewModel = viewModel()
 
                 HomeScreen(
-                    onAlbumDetails = { navController.navigate(VinilosScreen.AlbumDetail.name) },
+                    onAlbumDetails = {
+                        navController.navigate(VinilosScreen.AlbumDetail.name)
+//                        navController.popBackStack()
+                                     },
                     albumUiState = homeViewModel.homeUiState,
                     modifier = Modifier
                         .fillMaxSize()

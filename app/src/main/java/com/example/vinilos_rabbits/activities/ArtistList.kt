@@ -12,6 +12,6 @@ fun ArtistListScreen(
     Column(
         modifier = modifier
     ) {
-        Text(text = "Artist")
+        Text(text = "List of Artist")
     }
 }
