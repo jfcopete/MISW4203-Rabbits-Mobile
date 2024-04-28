@@ -1,13 +1,17 @@
 package com.example.vinilos_rabbits.activities
 
 import androidx.annotation.StringRes
+import androidx.compose.animation.expandHorizontally
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -15,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
@@ -58,7 +63,6 @@ fun HomeApp() {
             VinilosTopAppBar(
                 currentScreen = currentScreen,
                 //scrollBehavior = scrollBehavior,
-                modifier = Modifier.background(Color.Blue),
                 canNavigateBack = navController.previousBackStackEntry != null,
                 navigateUp = { navController.navigateUp() }
             )
@@ -123,18 +127,26 @@ fun HomeScreen(
     albumUiState: HomeUiState,
     modifier: Modifier = Modifier,
 ) {
-    Column {
+    Column(
+        modifier = modifier
+            .padding(1.dp),
+    ) {
         WelcomeText()
+        Row(
+            modifier = modifier,
+            horizontalArrangement = Arrangement.Center
 
-        when (albumUiState) {
-            is HomeUiState.Loading -> LoadingScreen()
-            is HomeUiState.Error -> ErrorScreen()
-            is HomeUiState.Success -> AlbumsList(
-                onAlbumDetails,
-                albumUiState.albums,
-                modifier = modifier
-            )
+        ) {
+            when (albumUiState) {
+                is HomeUiState.Loading -> LoadingScreen()
+                is HomeUiState.Error -> ErrorScreen()
+                is HomeUiState.Success -> AlbumsList(
+                    onAlbumDetails,
+                    albumUiState.albums,
+                )
+            }
         }
+
     }
 
 }
@@ -143,7 +155,7 @@ fun HomeScreen(
 fun WelcomeText() {
     Text(
         text= stringResource(R.string.welcome_title),
-        fontSize = 40.sp,
+        fontSize = 38.sp,
         textAlign = TextAlign.Center,
     )
 }
@@ -153,16 +165,21 @@ fun WelcomeText() {
 fun AlbumsList(
     onAlbumDetails: () -> Unit,
     albums: List<AlbumSerialized>,
-    modifier: Modifier
 ) {
-    Column {
+    Column (
+    ) {
         albums.forEach { album ->
-            AlbumCard(
-                img = album.cover,
-                name = album.name,
-                description = album.genre,
-                onAlbumDetails = onAlbumDetails
-            )
+            Box(
+                modifier = Modifier.padding(horizontal =  0.dp, vertical = 10.dp)
+            ){
+                AlbumCard(
+                    img = album.cover,
+                    name = album.name,
+                    description = album.genre,
+                    onAlbumDetails = onAlbumDetails
+                )
+
+            }
         }
     }
 }
