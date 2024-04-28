@@ -27,6 +27,7 @@ import org.junit.Rule
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
+@Suppress("DEPRECATION")
 @RunWith(AndroidJUnit4::class)
 @LargeTest
 class InstrumentedTest {
@@ -43,7 +44,9 @@ class InstrumentedTest {
     }
     @Test
     fun checkWelcomeTextDisplayed() {
-        onView(withText("Bienvenido a vinilos")).check(matches(isDisplayed()))
+        Thread.sleep(5000)
+        onView(withText("Vinilos rabbits")).check(matches(isDisplayed()))
+        Thread.sleep(5000)
     }
 
     @Test
@@ -75,7 +78,6 @@ class InstrumentedTest {
                 listOf(Comment(1,"rating",1),Comment(2,"rating",1))
             )
         )
-
         // Configuramos el estado de la pantalla Home
         composeTestRule.setContent {
             HomeScreen(
@@ -83,9 +85,7 @@ class InstrumentedTest {
                 albumUiState = HomeUiState.Success(albums)
             )
         }
-
         onView(withText("Description 1")).check(matches(isDisplayed()))
         onView(withText("Description 2")).check(matches(isDisplayed()))
     }
-
 }
