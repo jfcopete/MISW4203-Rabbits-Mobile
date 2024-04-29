@@ -1,10 +1,13 @@
 package com.example.vinilos_rabbits
 
+import androidx.compose.ui.test.SemanticsMatcher
+import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.filters.LargeTest
 import com.example.vinilos_rabbits.activities.HomeApp
+import androidx.compose.ui.test.waitUntilAtLeastOneExists
 import com.example.vinilos_rabbits.activities.HomeScreen
 import com.example.vinilos_rabbits.services.Comment
 import com.example.vinilos_rabbits.services.AlbumSerialized
@@ -45,9 +48,12 @@ class InstrumentedTestHU02 {
         Thread.sleep(2000)
         rule.onNodeWithText("Vinilos rabbits").assertExists()
         Thread.sleep(2000)
+        rule.onNodeWithText("Buscando América").assertExists()
         rule.onNodeWithText("Poeta del pueblo").assertExists()
         rule.onNodeWithText("Buscando América").performClick()
-        Thread.sleep(6000)
+        Thread.sleep(8000)
+        rule.onNodeWithText("Canciones").assertExists()
+        Thread.sleep(4000)
     }
 }
 
