@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="deploymentTargetDropDown">
+    <value>
+      <entry key="InstrumentedTest2">
+        <State />
+      </entry>
+      <entry key="InstrumentedTestHU01">
+        <State />
+      </entry>
+      <entry key="InstrumentedTestHU02">
+        <State />
+      </entry>
+      <entry key="albumClickNavigatesToDetails()">
+        <State />
+      </entry>
+      <entry key="app">
+        <State />
+      </entry>
+    </value>
+  </component>
+</project>
