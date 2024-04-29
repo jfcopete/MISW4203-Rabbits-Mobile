@@ -25,7 +25,7 @@ class InstrumentedTestHU01 {
     @get:Rule
     val rule = createComposeRule()
 
-    //Test titulo de aplicacion renderizado
+    /**Test titulo de aplicacion renderizado**/
     @Test
     fun checkWelcomeTextDisplayed() {
         rule.setContent {
@@ -34,7 +34,7 @@ class InstrumentedTestHU01 {
         rule.onNodeWithText("Vinilos rabbits").assertExists()
     }
 
-    //Test albums de prueba renderizados
+    /**Test albums de prueba renderizados**/
     @Test
     fun checkAlbumsDisplayed() {
         val albums = listOf(
