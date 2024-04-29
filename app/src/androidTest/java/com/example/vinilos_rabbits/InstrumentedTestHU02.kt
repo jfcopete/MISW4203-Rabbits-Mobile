@@ -40,20 +40,16 @@ class InstrumentedTestHU02 {
 
     /**Test albums de prueba renderizados**/
     @Test
-    fun checkAlbumsDisplayed() {
+    fun checkAlbumsDisplayedDetails() {
 
         rule.setContent {
             HomeApp()
         }
-        Thread.sleep(2000)
         rule.onNodeWithText("Vinilos rabbits").assertExists()
-        Thread.sleep(2000)
         rule.onNodeWithText("Buscando América").assertExists()
         rule.onNodeWithText("Poeta del pueblo").assertExists()
         rule.onNodeWithText("Buscando América").performClick()
-        Thread.sleep(8000)
         rule.onNodeWithText("Canciones").assertExists()
-        Thread.sleep(4000)
     }
 }
 
