@@ -6,6 +6,7 @@ import retrofit2.Retrofit
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 private const val BASE_URL = "http://34.28.129.54:3000/"
 
@@ -17,6 +18,11 @@ private val retrofit = Retrofit.Builder()
 interface VinilosApiService {
      @GET("albums")
      suspend fun getAlbums(): List<AlbumSerialized>
+
+    @GET("albums/{albumId}")
+    suspend fun getAlbum(
+        @Path("albumId") albumId: Int
+    ): AlbumSerialized
 }
 
 object VinilosApi {

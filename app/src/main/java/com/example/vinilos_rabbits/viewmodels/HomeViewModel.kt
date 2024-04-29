@@ -1,12 +1,10 @@
 package com.example.vinilos_rabbits.viewmodels
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.vinilos_rabbits.models.Album
 import com.example.vinilos_rabbits.services.AlbumSerialized
 import com.example.vinilos_rabbits.services.VinilosApi
 import kotlinx.coroutines.launch
@@ -21,6 +19,8 @@ sealed interface HomeUiState {
 class HomeViewModel: ViewModel() {
 
     var homeUiState: HomeUiState by mutableStateOf(HomeUiState.Loading)
+        private set
+    var albumIdSelected: Int by mutableStateOf(1)
         private set
 
     init {
@@ -37,5 +37,9 @@ class HomeViewModel: ViewModel() {
                 HomeUiState.Error
             }
         }
+    }
+
+    fun setAlbumId(albumId: Int){
+        albumIdSelected = albumId
     }
 }
