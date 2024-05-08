@@ -8,7 +8,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-private const val BASE_URL = "http://34.28.129.54:3000/"
+private const val BASE_URL = "http://34.41.37.149:3000/"
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
@@ -23,6 +23,9 @@ interface VinilosApiService {
     suspend fun getAlbum(
         @Path("albumId") albumId: Int
     ): AlbumSerialized
+
+    @GET("collectors")
+    suspend fun getCollectors(): List<CollectorSerialized>
 }
 
 object VinilosApi {
