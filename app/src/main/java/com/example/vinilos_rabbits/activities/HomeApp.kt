@@ -1,24 +1,18 @@
 package com.example.vinilos_rabbits.activities
 
-import androidx.annotation.StringRes
-import androidx.compose.foundation.background
+import android.util.Log
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -40,6 +34,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.vinilos_rabbits.components.VinilosBottomBar
 import com.example.vinilos_rabbits.utils.VinilosScreen
+import androidx.compose.foundation.lazy.items
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -51,6 +46,7 @@ fun HomeApp() {
     val currentScreen = VinilosScreen.valueOf(
         backStackEntry?.destination?.route ?: VinilosScreen.Start.name
     )
+    val homeViewModel: HomeViewModel = viewModel()
 
     Scaffold(
         //modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -58,7 +54,6 @@ fun HomeApp() {
             VinilosTopAppBar(
                 currentScreen = currentScreen,
                 //scrollBehavior = scrollBehavior,
-                modifier = Modifier.background(Color.Blue),
                 canNavigateBack = navController.previousBackStackEntry != null,
                 navigateUp = { navController.navigateUp() }
             )
@@ -67,7 +62,8 @@ fun HomeApp() {
             VinilosBottomBar(
                 currentCategory = currentScreen,
                 navController = navController,
-                modifier = Modifier.background(Color.Green)
+                canNavigateBack = false
+//                canNavigateBack = navController.previousBackStackEntry != null,
             )
         }
     ) { innerPadding ->
@@ -77,10 +73,13 @@ fun HomeApp() {
             modifier = Modifier.padding(innerPadding)
         ){
             composable(route = VinilosScreen.Start.name) {
-                val homeViewModel: HomeViewModel = viewModel()
+
 
                 HomeScreen(
-                    onAlbumDetails = { navController.navigate(VinilosScreen.AlbumDetail.name) },
+                    onAlbumDetails = {albumId ->
+                        homeViewModel.setAlbumId(albumId)
+                        navController.navigate(VinilosScreen.AlbumDetail.name)
+                                     },
                     albumUiState = homeViewModel.homeUiState,
                     modifier = Modifier
                         .fillMaxSize()
@@ -90,6 +89,7 @@ fun HomeApp() {
             }
             composable(route = VinilosScreen.AlbumDetail.name){
                 AlbumDetails(
+                    albumId = homeViewModel.albumIdSelected,
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(dimensionResource(R.dimen.padding_medium))
@@ -119,22 +119,23 @@ fun HomeApp() {
 
 @Composable
 fun HomeScreen(
-    onAlbumDetails: () -> Unit,
+    onAlbumDetails: (albumId: Int) -> Unit,
     albumUiState: HomeUiState,
     modifier: Modifier = Modifier,
 ) {
-    Column {
-        WelcomeText()
+    Column(
+        modifier = modifier
+            .padding(1.dp),
+    ) {
+            when (albumUiState) {
+                is HomeUiState.Loading -> LoadingScreen()
+                is HomeUiState.Error -> ErrorScreen()
+                is HomeUiState.Success -> AlbumsList(
+                    onAlbumDetails,
+                    albumUiState.albums,
+                )
+            }
 
-        when (albumUiState) {
-            is HomeUiState.Loading -> LoadingScreen()
-            is HomeUiState.Error -> ErrorScreen()
-            is HomeUiState.Success -> AlbumsList(
-                onAlbumDetails,
-                albumUiState.albums,
-                modifier = modifier
-            )
-        }
     }
 
 }
@@ -143,7 +144,7 @@ fun HomeScreen(
 fun WelcomeText() {
     Text(
         text= stringResource(R.string.welcome_title),
-        fontSize = 40.sp,
+        fontSize = 38.sp,
         textAlign = TextAlign.Center,
     )
 }
@@ -151,18 +152,22 @@ fun WelcomeText() {
 
 @Composable
 fun AlbumsList(
-    onAlbumDetails: () -> Unit,
+    onAlbumDetails: (albumId: Int) -> Unit,
     albums: List<AlbumSerialized>,
-    modifier: Modifier
 ) {
-    Column {
-        albums.forEach { album ->
-            AlbumCard(
-                img = album.cover,
-                name = album.name,
-                description = album.genre,
-                onAlbumDetails = onAlbumDetails
-            )
+    LazyColumn (
+    ) {
+        items(albums) {album ->
+            Box(
+                modifier = Modifier.padding(bottom = 15.dp)
+            ) {
+                AlbumCard(
+                    img = album.cover,
+                    name = album.name,
+                    description = album.genre,
+                    onAlbumDetails = { onAlbumDetails(album.id) }
+                )
+            }
         }
     }
 }
