@@ -27,6 +27,10 @@ interface VinilosApiService {
 
     @GET("musicians")
     suspend fun getArtists(): List<ArtistSerialized>
+
+    @GET("collectors")
+    suspend fun getCollectors(): List<CollectorSerialized>
+
 }
 
 object VinilosApi {
