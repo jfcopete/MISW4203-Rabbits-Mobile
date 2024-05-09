@@ -25,7 +25,7 @@ interface VinilosApiService {
         @Path("albumId") albumId: Int
     ): AlbumSerialized
 
-    @GET("artists")
+    @GET("musicians")
     suspend fun getArtists(): List<ArtistSerialized>
 }
 

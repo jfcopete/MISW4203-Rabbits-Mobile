@@ -11,18 +11,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.vinilos_rabbits.services.ArtistSerialized
 import androidx.compose.foundation.lazy.items
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.vinilos_rabbits.components.ArtistCard
 import com.example.vinilos_rabbits.components.ErrorScreen
 import com.example.vinilos_rabbits.components.LoadingScreen
 import com.example.vinilos_rabbits.viewmodels.ArtistUiState
+import com.example.vinilos_rabbits.viewmodels.ArtistViewModel
 import com.example.vinilos_rabbits.viewmodels.HomeUiState
 
 @Composable
 fun ArtistListScreen(
-    onArtistDetails: (artistId: Int) -> Unit,
-    artistUiState: ArtistUiState,
+//    onArtistDetails: (artistId: Int) -> Unit,
+//    artistUiState: ArtistUiState,
     modifier: Modifier
 ){
+    val artistViewModel: ArtistViewModel = viewModel()
+    val artistUiState = artistViewModel.artistUiState
+
     Column(
         modifier = modifier
             .padding(1.dp),
@@ -30,18 +35,15 @@ fun ArtistListScreen(
         when (artistUiState) {
             is ArtistUiState.Loading -> LoadingScreen()
             is ArtistUiState.Error -> ErrorScreen()
-            is ArtistUiState.Success -> ArtistList(
-                onArtistDetails,
-                artistUiState.artist )
+            is ArtistUiState.Success -> ArtistList(artistUiState.artist)
         }
-
     }
 }
 
 
 @Composable
 fun ArtistList(
-    onArtistDetails: (artistId: Int) -> Unit,
+//    onArtistDetails: (artistId: Int) -> Unit,
     artists: List<ArtistSerialized>,
 ) {
     LazyColumn (
@@ -53,8 +55,8 @@ fun ArtistList(
                 ArtistCard(
                     name = artist.name,
                     image =  artist.image,
-                    description =  artist.description,
-                    onArtistDetails = { onArtistDetails(artist.id) }
+                    description =  artist.description
+//                    onArtistDetails = { onArtistDetails(artist.id) }
                 )
             }
         }

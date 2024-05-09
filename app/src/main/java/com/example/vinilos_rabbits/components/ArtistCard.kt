@@ -13,10 +13,10 @@ fun ArtistCard(
     name: String,
     image: String,
     description: String,
-    onArtistDetails: () -> Unit
+//    onArtistDetails: () -> Unit
 ) {
     Column {
-        Surface(onClick=onArtistDetails ){
+        Surface(){
             Image(
                 painter = rememberAsyncImagePainter(image),
                 contentDescription = name,
