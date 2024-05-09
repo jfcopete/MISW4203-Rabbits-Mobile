@@ -10,6 +10,6 @@ data class CollectorSerialized (
     val email: String,
     val comments: List<Comment>,
     val favoritePerformers: List<PerformerSerialized>,
-    val collectorAlbums: List<AlbumSerialized>
+    val collectorAlbums: List<CollectorAlbumSerialized>
 
 )

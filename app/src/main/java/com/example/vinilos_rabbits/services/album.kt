@@ -15,3 +15,10 @@ data class AlbumSerialized(
     val performers: List<PerformerSerialized>?,
     val comments: List<Comment>?
     )
+
+@Serializable
+data class CollectorAlbumSerialized(
+    val id: Int,
+    val status: String?,
+    val price: Int?,
+)

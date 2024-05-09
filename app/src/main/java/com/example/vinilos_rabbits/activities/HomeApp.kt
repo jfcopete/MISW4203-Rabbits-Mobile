@@ -103,7 +103,7 @@ fun HomeApp() {
                 )
             }
             composable(route = VinilosScreen.Collector.name){
-                CollectorListScreen(
+                CollectorList(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(dimensionResource(R.dimen.padding_medium))
