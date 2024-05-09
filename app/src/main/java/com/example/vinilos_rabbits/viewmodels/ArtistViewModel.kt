@@ -6,7 +6,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.vinilos_rabbits.services.AlbumSerialized
 import com.example.vinilos_rabbits.services.ArtistSerialized
 import com.example.vinilos_rabbits.services.VinilosApi
 import kotlinx.coroutines.launch
@@ -25,8 +24,7 @@ class ArtistViewModel:  ViewModel() {
     var artistIdSelected: Int by mutableStateOf(1)
         private set
 
-    init {
-        getAllArtists()
+    init {        getAllArtists()
     }
     fun getAllArtists(){
         viewModelScope.launch {

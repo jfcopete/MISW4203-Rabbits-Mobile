@@ -9,7 +9,7 @@ data class ArtistSerialized(
     val image: String,
     val description: String,
     val birthDate: String,
-    val albums: List<AlbumSerialized>?,
+    val albums: List<AlbumArtistSerialized>?,
     val performerPrizes: List<PerformerPrizesArtist>?,
 )
 
