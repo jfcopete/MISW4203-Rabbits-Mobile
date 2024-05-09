@@ -52,6 +52,7 @@ fun ArtistList(
             Box(
                 modifier = Modifier.padding(bottom = 15.dp)
             ){
+
                 ArtistCard(
                     name = artist.name,
                     image =  artist.image,
