@@ -1,6 +1,7 @@
 package com.example.vinilos_rabbits.services
 
 import com.example.vinilos_rabbits.models.Album
+import com.example.vinilos_rabbits.models.Artist
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.Retrofit
 import kotlinx.serialization.json.Json
@@ -24,8 +25,12 @@ interface VinilosApiService {
         @Path("albumId") albumId: Int
     ): AlbumSerialized
 
+    @GET("musicians")
+    suspend fun getArtists(): List<ArtistSerialized>
+
     @GET("collectors")
     suspend fun getCollectors(): List<CollectorSerialized>
+
 }
 
 object VinilosApi {
