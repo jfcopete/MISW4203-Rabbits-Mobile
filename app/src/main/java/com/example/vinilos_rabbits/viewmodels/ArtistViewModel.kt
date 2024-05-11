@@ -13,6 +13,7 @@ import java.io.IOException
 
 sealed interface ArtistUiState {
     data class Success(val artist: List<ArtistSerialized>) : ArtistUiState
+    data class SuccessDetails(val artistDetailed: ArtistSerialized) : ArtistUiState
     object Error : ArtistUiState
     object Loading : ArtistUiState
 }
@@ -39,6 +40,17 @@ class ArtistViewModel:  ViewModel() {
 
     fun setArtistId(artistId: Int){
         artistIdSelected = artistId
+    }
+
+    fun getArtistById(artistId: Int){
+        viewModelScope.launch {
+            artistUiState = try {
+                val response = VinilosApi.retrofitService.getMusicianById(artistId)
+                ArtistUiState.SuccessDetails(response)
+            } catch (e: IOException){
+                ArtistUiState.Error
+            }
+        }
     }
 
 }

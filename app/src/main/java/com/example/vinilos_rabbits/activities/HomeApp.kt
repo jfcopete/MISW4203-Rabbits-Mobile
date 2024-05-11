@@ -99,11 +99,11 @@ fun HomeApp() {
             }
             composable(route = VinilosScreen.Artist.name){
                 ArtistListScreen(
-//                    onArtistDetails = {artistId ->
-//                        artistViewModel.setArtistId(artistId)
-//                        navController.navigate(VinilosScreen.ArtistDetail.name)
-//                        },
-//                    artistUiState = artistViewModel.artistUiState,
+                    onArtistDetails = {artistId ->
+                        artistViewModel.setArtistId(artistId)
+                        navController.navigate(VinilosScreen.ArtistDetail.name)
+                        },
+                    artistUiState = artistViewModel.artistUiState,
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(dimensionResource(R.dimen.padding_medium))
@@ -111,6 +111,14 @@ fun HomeApp() {
             }
             composable(route = VinilosScreen.Collector.name){
                 CollectorList(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(dimensionResource(R.dimen.padding_medium))
+                )
+            }
+            composable(route = VinilosScreen.ArtistDetail.name){
+                ArtistDetails(
+                    artistId = artistViewModel.artistIdSelected,
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(dimensionResource(R.dimen.padding_medium))

@@ -15,14 +15,15 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.vinilos_rabbits.components.ArtistCard
 import com.example.vinilos_rabbits.components.ErrorScreen
 import com.example.vinilos_rabbits.components.LoadingScreen
+import com.example.vinilos_rabbits.viewmodels.AlbumUiState
 import com.example.vinilos_rabbits.viewmodels.ArtistUiState
 import com.example.vinilos_rabbits.viewmodels.ArtistViewModel
 import com.example.vinilos_rabbits.viewmodels.HomeUiState
 
 @Composable
 fun ArtistListScreen(
-//    onArtistDetails: (artistId: Int) -> Unit,
-//    artistUiState: ArtistUiState,
+    onArtistDetails: (artistId: Int) -> Unit,
+    artistUiState: ArtistUiState,
     modifier: Modifier
 ){
     val artistViewModel: ArtistViewModel = viewModel()
@@ -35,7 +36,10 @@ fun ArtistListScreen(
         when (artistUiState) {
             is ArtistUiState.Loading -> LoadingScreen()
             is ArtistUiState.Error -> ErrorScreen()
-            is ArtistUiState.Success -> ArtistList(artistUiState.artist)
+            is ArtistUiState.Success -> ArtistList(onArtistDetails,artistUiState.artist)
+            is ArtistUiState.SuccessDetails -> ArtistDetailsScreen(
+                artist= artistUiState.artistDetailed,
+            )
         }
     }
 }
@@ -43,7 +47,7 @@ fun ArtistListScreen(
 
 @Composable
 fun ArtistList(
-//    onArtistDetails: (artistId: Int) -> Unit,
+    onArtistDetails: (artistId: Int) -> Unit,
     artists: List<ArtistSerialized>,
 ) {
     LazyColumn (
@@ -54,12 +58,15 @@ fun ArtistList(
             ){
 
                 ArtistCard(
+
                     name = artist.name,
                     image =  artist.image,
-                    description =  artist.description
-//                    onArtistDetails = { onArtistDetails(artist.id) }
+                    description =  artist.description,
+                    onArtistDetails = { onArtistDetails(artist.id) }
                 )
             }
         }
     }
 }
+
+
