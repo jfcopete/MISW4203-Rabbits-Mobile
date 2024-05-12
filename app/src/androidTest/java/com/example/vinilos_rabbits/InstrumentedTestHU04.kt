@@ -31,8 +31,13 @@ class InstrumentedTestHU04 {
     }
 
     fun checkArtistisplayedDtails(){
+        rule.setContent {
+            HomeApp()
+        }
+        rule.waitForIdle()
+        rule.onNodeWithContentDescription("Artista").performClick()
+        rule.onNodeWithText("Artista").assertExists()
+        checkArtistisplayedDtails()
         rule.onNodeWithText("").assertExists()
     }
-
-
 }

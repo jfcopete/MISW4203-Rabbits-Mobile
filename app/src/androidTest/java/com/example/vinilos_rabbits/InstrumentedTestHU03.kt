@@ -13,11 +13,6 @@ class InstrumentedTestHU03 {
     val rule = createComposeRule()
 
     @Test
-    fun checkWelcomeTextDisplayed() {
-
-    }
-
-    @Test
     fun checkArtistList() {
 
         rule.setContent {
@@ -26,7 +21,6 @@ class InstrumentedTestHU03 {
         rule.waitForIdle()
         rule.onNodeWithContentDescription("Artista").performClick()
         rule.onNodeWithText("Artista").assertExists()
-
     }
 
 }
