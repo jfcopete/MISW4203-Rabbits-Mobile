@@ -4,9 +4,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.vinilos_rabbits.services.AlbumSerialized
+import com.example.vinilos_rabbits.repositories.CollectorRepository
 import com.example.vinilos_rabbits.services.CollectorSerialized
-import com.example.vinilos_rabbits.services.VinilosApi
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -28,7 +27,8 @@ class CollectorViewModel: ViewModel(){
     fun getAllCollectors(){
         viewModelScope.launch {
             collectorUiState = try {
-                val response = VinilosApi.retrofitService.getCollectors()
+                val repository = CollectorRepository()
+                val response = repository.getAllCollectors()
                 CollectorUiState.Success(response)
             } catch (e: IOException) {
                 CollectorUiState.Error
@@ -38,4 +38,3 @@ class CollectorViewModel: ViewModel(){
 
 }
 
-// analisis de capacidad
