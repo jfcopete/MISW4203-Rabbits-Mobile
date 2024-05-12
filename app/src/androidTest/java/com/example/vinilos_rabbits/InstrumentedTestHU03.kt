@@ -9,6 +9,7 @@ import org.junit.Rule
 import org.junit.Test
 
 class InstrumentedTestHU03 {
+    val artistName: String = "Artista"
     @get:Rule
     val rule = createComposeRule()
 
@@ -19,8 +20,8 @@ class InstrumentedTestHU03 {
             HomeApp()
         }
         rule.waitForIdle()
-        rule.onNodeWithContentDescription("Artista").performClick()
-        rule.onNodeWithText("Artista").assertExists()
+        rule.onNodeWithContentDescription(artistName).performClick()
+        rule.onNodeWithText(artistName).assertExists()
     }
 
 }
