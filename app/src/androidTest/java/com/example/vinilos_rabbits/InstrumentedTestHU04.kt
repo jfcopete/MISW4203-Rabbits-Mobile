@@ -16,7 +16,7 @@ class InstrumentedTestHU04 {
     val rule = createComposeRule()
 
     @Test
-    fun checkArtistList() {
+    fun checkArtistDetails() {
 
         rule.setContent {
             HomeApp()
@@ -26,6 +26,7 @@ class InstrumentedTestHU04 {
         rule.onNodeWithText(ARTISTA).assertExists()
         rule.waitForIdle()
         rule.onNodeWithText(SEARCH_BLADES_TEST).performClick()
+        rule.waitForIdle()
         rule.onNodeWithText(SEARCH_BLADES_TEST).assertExists()
     }
 }
