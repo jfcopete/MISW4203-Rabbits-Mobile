@@ -18,6 +18,8 @@ sealed interface HomeUiState {
 
 class HomeViewModel: ViewModel() {
 
+    val repository = AlbumRepository()
+
     var homeUiState: HomeUiState by mutableStateOf(HomeUiState.Loading)
         private set
     var albumIdSelected: Int by mutableStateOf(1)
@@ -31,7 +33,6 @@ class HomeViewModel: ViewModel() {
     fun getAllAlbums(){
         viewModelScope.launch {
             homeUiState =  try {
-                val repository = AlbumRepository()
                 val response = repository.getAllAlbums()
                 HomeUiState.Success(response)
             } catch (e: IOException){

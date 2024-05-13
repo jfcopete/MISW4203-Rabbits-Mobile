@@ -1,4 +1,6 @@
 package com.example.vinilos_rabbits.viewmodels
+import android.app.Application
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -15,7 +17,9 @@ sealed interface CollectorUiState {
     object Loading : CollectorUiState
 }
 
-class CollectorViewModel: ViewModel(){
+class CollectorViewModel(): ViewModel(){
+
+    private val repository = CollectorRepository()
 
     var collectorUiState: CollectorUiState by mutableStateOf(CollectorUiState.Loading)
         private set
@@ -27,10 +31,12 @@ class CollectorViewModel: ViewModel(){
     fun getAllCollectors(){
         viewModelScope.launch {
             collectorUiState = try {
-                val repository = CollectorRepository()
+                Log.i("getCollertors", "**")
                 val response = repository.getAllCollectors()
+                Log.i("getCollertors res", response.toString())
                 CollectorUiState.Success(response)
             } catch (e: IOException) {
+                Log.i("getCollertors Error", e.toString())
                 CollectorUiState.Error
             }
         }
