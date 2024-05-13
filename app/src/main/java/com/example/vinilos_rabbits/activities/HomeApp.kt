@@ -35,6 +35,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.vinilos_rabbits.components.VinilosBottomBar
 import com.example.vinilos_rabbits.utils.VinilosScreen
 import androidx.compose.foundation.lazy.items
+import com.example.vinilos_rabbits.viewmodels.ArtistViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -47,6 +48,7 @@ fun HomeApp() {
         backStackEntry?.destination?.route ?: VinilosScreen.Start.name
     )
     val homeViewModel: HomeViewModel = viewModel()
+    val artistViewModel: ArtistViewModel = viewModel()
 
     Scaffold(
         //modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -97,13 +99,26 @@ fun HomeApp() {
             }
             composable(route = VinilosScreen.Artist.name){
                 ArtistListScreen(
+                    onArtistDetails = {artistId ->
+                        artistViewModel.setArtistId(artistId)
+                        navController.navigate(VinilosScreen.ArtistDetail.name)
+                        },
+                    artistUiState = artistViewModel.artistUiState,
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(dimensionResource(R.dimen.padding_medium))
                 )
             }
             composable(route = VinilosScreen.Collector.name){
-                CollectorListScreen(
+                CollectorList(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(dimensionResource(R.dimen.padding_medium))
+                )
+            }
+            composable(route = VinilosScreen.ArtistDetail.name){
+                ArtistDetails(
+                    artistId = artistViewModel.artistIdSelected,
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(dimensionResource(R.dimen.padding_medium))
