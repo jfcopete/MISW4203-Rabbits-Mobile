@@ -6,8 +6,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.vinilos_rabbits.repositories.ArtistRepository
 import com.example.vinilos_rabbits.services.ArtistSerialized
-import com.example.vinilos_rabbits.services.VinilosApi
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -30,7 +30,8 @@ class ArtistViewModel:  ViewModel() {
     fun getAllArtists(){
         viewModelScope.launch {
             artistUiState = try {
-                val response = VinilosApi.retrofitService.getArtists()
+                val repository = ArtistRepository()
+                val response =  repository.getAllArtists()
                 ArtistUiState.Success(response)
             } catch (e: IOException){
                 ArtistUiState.Error
@@ -45,7 +46,8 @@ class ArtistViewModel:  ViewModel() {
     fun getArtistById(artistId: Int){
         viewModelScope.launch {
             artistUiState = try {
-                val response = VinilosApi.retrofitService.getMusicianById(artistId)
+                val repository = ArtistRepository()
+                val response = repository.getArtistById(artistId)
                 ArtistUiState.SuccessDetails(response)
             } catch (e: IOException){
                 ArtistUiState.Error
