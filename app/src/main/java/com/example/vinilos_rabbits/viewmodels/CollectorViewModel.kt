@@ -31,12 +31,9 @@ class CollectorViewModel(): ViewModel(){
     fun getAllCollectors(){
         viewModelScope.launch {
             collectorUiState = try {
-                Log.i("getCollertors", "**")
                 val response = repository.getAllCollectors()
-                Log.i("getCollertors res", response.toString())
                 CollectorUiState.Success(response)
             } catch (e: IOException) {
-                Log.i("getCollertors Error", e.toString())
                 CollectorUiState.Error
             }
         }
