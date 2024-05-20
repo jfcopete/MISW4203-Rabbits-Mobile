@@ -106,7 +106,8 @@ fun HomeApp() {
                     artistUiState = artistViewModel.artistUiState,
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(dimensionResource(R.dimen.padding_medium))
+                        .padding(dimensionResource(R.dimen.padding_medium)),
+                    navigation=navController
                 )
             }
             composable(route = VinilosScreen.Collector.name){
@@ -119,6 +120,14 @@ fun HomeApp() {
             composable(route = VinilosScreen.ArtistDetail.name){
                 ArtistDetails(
                     artistId = artistViewModel.artistIdSelected,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(dimensionResource(R.dimen.padding_medium)),
+                    navigation=navController
+                )
+            }
+            composable(route = VinilosScreen.AddReward.name){
+                AddReward(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(dimensionResource(R.dimen.padding_medium))

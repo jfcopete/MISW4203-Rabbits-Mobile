@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.example.vinilos_rabbits.services.ArtistSerialized
 import androidx.compose.foundation.lazy.items
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import com.example.vinilos_rabbits.components.ArtistCard
 import com.example.vinilos_rabbits.components.ErrorScreen
 import com.example.vinilos_rabbits.components.LoadingScreen
@@ -24,7 +25,8 @@ import com.example.vinilos_rabbits.viewmodels.HomeUiState
 fun ArtistListScreen(
     onArtistDetails: (artistId: Int) -> Unit,
     artistUiState: ArtistUiState,
-    modifier: Modifier
+    modifier: Modifier,
+    navigation:  NavHostController
 ){
     val artistViewModel: ArtistViewModel = viewModel()
     val artistUiState = artistViewModel.artistUiState
@@ -36,9 +38,10 @@ fun ArtistListScreen(
         when (artistUiState) {
             is ArtistUiState.Loading -> LoadingScreen()
             is ArtistUiState.Error -> ErrorScreen()
-            is ArtistUiState.Success -> ArtistList(onArtistDetails,artistUiState.artist)
+            is ArtistUiState.Success -> ArtistList(onArtistDetails, artistUiState.artist)
             is ArtistUiState.SuccessDetails -> ArtistDetailsScreen(
                 artist= artistUiState.artistDetailed,
+                navigation=navigation
             )
         }
     }

@@ -9,7 +9,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-private const val BASE_URL = "http://34.132.89.196:3000/"
+private const val BASE_URL = "http://34.67.165.27:3000/"
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
