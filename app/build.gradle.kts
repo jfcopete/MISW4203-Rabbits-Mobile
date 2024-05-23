@@ -72,6 +72,8 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.0.0-rc01")
     implementation("androidx.navigation:navigation-compose:2.7.4")
     implementation(libs.androidx.navigation.runtime.ktx)
+    implementation ("androidx.compose.foundation:foundation:1.0.0")
+
 
 
     testImplementation(libs.junit)
