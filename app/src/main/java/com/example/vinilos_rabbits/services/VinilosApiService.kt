@@ -5,9 +5,10 @@ import retrofit2.Retrofit
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
-private const val BASE_URL = "https://0e77-181-58-38-212.ngrok-free.app/"
+private const val BASE_URL = "https://585a-181-58-38-212.ngrok-free.app/"
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
@@ -34,6 +35,9 @@ interface VinilosApiService {
 
     @GET("prizes")
     suspend fun getPrizes(): List<PrizeSerialized>
+
+    @POST("prizes/{prizeId}/musicians/{artistId}")
+    suspend fun addPrizeToArtist(@Path("prizeId") prizeId: Int, @Path("artistId") artistId: Int): AddPrizeToArtistResponse
 }
 
 object VinilosApi {

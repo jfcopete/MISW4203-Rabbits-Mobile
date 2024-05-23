@@ -34,12 +34,9 @@ class HomeViewModel: ViewModel() {
     fun getAllAlbums(){
         viewModelScope.launch {
             homeUiState =  try {
-                Log.i("*****", "")
                 val response = repository.getAllAlbums()
-                Log.i("*****", response.toString())
                 HomeUiState.Success(response)
             } catch (e: IOException){
-                Log.e("****", e.toString())
                 HomeUiState.Error
             }
         }
