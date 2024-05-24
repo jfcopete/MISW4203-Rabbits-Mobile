@@ -1,6 +1,4 @@
 package com.example.vinilos_rabbits.viewmodels
-import android.app.Application
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -13,22 +11,26 @@ import java.io.IOException
 
 sealed interface CollectorUiState {
     data class Success(val collectors: List<CollectorSerialized>) : CollectorUiState
+    data class SuccessDetails(val collectorDetailed: CollectorSerialized) : CollectorUiState
     object Error : CollectorUiState
     object Loading : CollectorUiState
 }
 
-class CollectorViewModel(): ViewModel(){
+class CollectorViewModel : ViewModel() {
 
     private val repository = CollectorRepository()
 
     var collectorUiState: CollectorUiState by mutableStateOf(CollectorUiState.Loading)
         private set
 
+    var collectorIdSelected: Int by mutableStateOf(0)
+        private set
+
     init {
         getAllCollectors()
     }
 
-    fun getAllCollectors(){
+    fun getAllCollectors() {
         viewModelScope.launch {
             collectorUiState = try {
                 val response = repository.getAllCollectors()
@@ -39,5 +41,19 @@ class CollectorViewModel(): ViewModel(){
         }
     }
 
+    fun getCollectorById(collectorId: Int) {
+        viewModelScope.launch {
+            collectorUiState = try {
+                val response = repository.getCollectorById(collectorId)
+                CollectorUiState.SuccessDetails(response)
+            } catch (e: IOException) {
+                CollectorUiState.Error
+            }
+        }
+    }
+
+    fun setCollectorId(collectorId: Int) {
+        collectorIdSelected = collectorId
+    }
 }
 
