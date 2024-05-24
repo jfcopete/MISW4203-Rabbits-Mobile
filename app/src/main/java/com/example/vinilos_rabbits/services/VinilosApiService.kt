@@ -8,7 +8,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 
-private const val BASE_URL = "https://585a-181-58-38-212.ngrok-free.app/"
+private const val BASE_URL = "http://34.228.22.154:3000/"
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
