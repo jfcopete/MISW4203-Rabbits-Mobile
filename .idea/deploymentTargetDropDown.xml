@@ -2,6 +2,12 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="InstrumentedTestHU01">
+        <State />
+      </entry>
+      <entry key="InstrumentedTestHU02">
+        <State />
+      </entry>
       <entry key="InstrumentedTestHU03">
         <State />
       </entry>
@@ -11,13 +17,7 @@
       <entry key="InstrumentedTestHU05">
         <State />
       </entry>
-      <entry key="Tests in 'com.example.vinilos_rabbits'">
-        <State />
-      </entry>
       <entry key="app">
-        <State />
-      </entry>
-      <entry key="checkArtistList()">
         <State />
       </entry>
     </value>

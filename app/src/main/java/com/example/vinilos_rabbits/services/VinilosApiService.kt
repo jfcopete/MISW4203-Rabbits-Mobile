@@ -1,5 +1,8 @@
 package com.example.vinilos_rabbits.services
 
+import com.example.vinilos_rabbits.models.Album
+import com.example.vinilos_rabbits.models.Artist
+import com.example.vinilos_rabbits.models.Comment
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.Retrofit
 import kotlinx.serialization.json.Json
@@ -7,6 +10,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Body
 
 private const val BASE_URL = "http://34.228.22.154:3000/"
 
@@ -38,6 +42,9 @@ interface VinilosApiService {
 
     @POST("prizes/{prizeId}/musicians/{artistId}")
     suspend fun addPrizeToArtist(@Path("prizeId") prizeId: Int, @Path("artistId") artistId: Int): AddPrizeToArtistResponse
+
+    @POST("albums/{albumId}/comments")
+    suspend fun addComment(@Path("albumId") albumId: Int, @Body comment: Comment): Comment
 }
 
 object VinilosApi {
