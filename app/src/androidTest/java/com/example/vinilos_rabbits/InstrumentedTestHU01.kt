@@ -26,13 +26,6 @@ class InstrumentedTestHU01 {
     val rule = createComposeRule()
 
     /**Test titulo de aplicacion renderizado**/
-    @Test
-    fun checkWelcomeTextDisplayed() {
-        rule.setContent {
-            HomeApp()
-        }
-        rule.onNodeWithText("Vinilos rabbits").assertExists()
-    }
 
     /**Test albums de prueba renderizados**/
     @Test

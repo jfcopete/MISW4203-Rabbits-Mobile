@@ -13,6 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.vinilos_rabbits.repositories.PrizeRepository
 import com.example.vinilos_rabbits.services.PrizeSerialized
@@ -52,6 +53,7 @@ fun PrizeAutocomplete(
                 expanded = expanded
             )},
             modifier = Modifier.menuAnchor()
+
         )
         ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
             options.forEach { item ->
