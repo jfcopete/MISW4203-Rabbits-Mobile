@@ -44,39 +44,29 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.vinilos_rabbits.R
+import com.example.vinilos_rabbits.components.Calendar
 import com.example.vinilos_rabbits.components.PrizeAutocomplete
+import com.example.vinilos_rabbits.repositories.PrizeRepository
 import com.example.vinilos_rabbits.viewmodels.PrizeViewModel
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import java.util.Date
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddReward(
     modifier: Modifier
 ){
-    var year by remember { mutableStateOf("") }
     var prizeId: Int by remember { mutableIntStateOf(0) }
     var showSnackbar by remember {
         mutableStateOf(false)
     }
     val prizeViewModel: PrizeViewModel = viewModel()
     val prizeToArtistUiState = prizeViewModel.prizeToArtistUiState
-
-    var dateResult by remember {
-        mutableStateOf("dd-mm-yyyy")
-    }
-
-    val openDatePickerDialog = remember { mutableStateOf(false) }
-    val datePickerState = rememberDatePickerState()
-    val selectedDateMillis = datePickerState.selectedDateMillis
-
-    if (selectedDateMillis != -1L && selectedDateMillis != null) {  // Check if a date is selected
-        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
-        val instant = Instant.ofEpochMilli(selectedDateMillis)
-        val date = instant.atZone(ZoneId.systemDefault()).toLocalDate()
-        dateResult = date.format(formatter)
+    var dateSelected = remember {
+        mutableStateOf<Date?>(null)
     }
 
     Column(
@@ -94,53 +84,15 @@ fun AddReward(
         Spacer(modifier = Modifier.height(24.dp))
         PrizeAutocomplete(onSelect = { prizeId = it})
         Spacer(modifier = Modifier.height(16.dp))
-        Surface(
-            modifier = Modifier.clickable {
-                openDatePickerDialog.value = true
-            }
-        ) {
-            TextField(
-                value = dateResult,
-                onValueChange = {
-                    openDatePickerDialog.value = true
-                },
-                leadingIcon = {
-                    IconButton(onClick = { openDatePickerDialog.value = true }) {
-                        Icon( // Replace with your desired icon content
-                            imageVector = Icons.Outlined.DateRange,
-                            contentDescription = "Seleccionar fecha de premiación"
-
-                        )
-                    }
-                }
-            )
-        }
-        if (openDatePickerDialog.value) {
-            val confirmEnabled = remember {
-                derivedStateOf { datePickerState.selectedDateMillis != null }
-            }
-            DatePickerDialog(
-                onDismissRequest = {
-                    openDatePickerDialog.value = false
-                },
-                confirmButton = {
-                    TextButton(
-                        onClick = {
-                            openDatePickerDialog.value = false
-                        },
-                        enabled = confirmEnabled.value
-                    ) {
-                        Text("OK")
-                    }
-                },
-            ){
-                DatePicker(state = datePickerState)
-            }
-        }
-        Spacer(modifier = Modifier.height(32.dp))
+        Calendar(
+            contentDescription = stringResource(R.string.aria_calendar_prize),
+            onDateSelected = { dateSelected.value = it }
+        )
         Button(onClick = {
-            Log.e("****", year)
-           //prizeViewModel.addPrizeToArtist(prizeId=prizeId, artistId = 100)
+            Log.i("prize * ", prizeId.toString())
+            Log.i("dateSelected * ", dateSelected.value.toString())
+            val prizeRepository = PrizeRepository()
+            //prizeRepository.addPrizeToArtist()
         }) {
             Text(text = stringResource(R.string.add_reward))
         }

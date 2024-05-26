@@ -20,6 +20,7 @@
     <string name="album_detail_navbar_title">Detalle del album</string>
     <string name="artist_detail_navbar_title">Detalle de Artista</string>
     <string name="collector_detail_navbar_title">Detalle de Coleccionista</string>
+    <string name="aria_calendar_prize">Seleccionar fecha de premiación</string>
 
     <string name="add_reward">"Agregar premio"</string>
 
