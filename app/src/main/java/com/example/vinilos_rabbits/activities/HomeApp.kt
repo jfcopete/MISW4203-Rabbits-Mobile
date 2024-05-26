@@ -67,7 +67,6 @@ fun HomeApp() {
                 currentCategory = currentScreen,
                 navController = navController,
                 canNavigateBack = false
-//                canNavigateBack = navController.previousBackStackEntry != null,
             )
         }
     ) { innerPadding ->
@@ -143,6 +142,7 @@ fun HomeApp() {
             }
             composable(route = VinilosScreen.AddReward.name){
                 AddReward(
+                    artistId = artistViewModel.artistIdSelected,
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(dimensionResource(R.dimen.padding_medium))

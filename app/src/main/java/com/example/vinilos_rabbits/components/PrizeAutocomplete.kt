@@ -23,7 +23,9 @@ import com.example.vinilos_rabbits.viewmodels.PrizeViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PrizeAutocomplete(
-    onSelect: (prizeId: Int) -> Unit
+    onSelect: (prizeId: Int) -> Unit,
+    isEnable: Boolean,
+    defaultValue: Int? = null
 ){
     val prizeViewModel: PrizeViewModel = viewModel()
     val prizesUiState = prizeViewModel.prizesUiState

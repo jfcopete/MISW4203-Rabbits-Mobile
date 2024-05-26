@@ -2,9 +2,8 @@ package com.example.vinilos_rabbits.activities
 
 import android.util.Log
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -13,24 +12,14 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.outlined.DateRange
 import androidx.compose.material3.Button
-import androidx.compose.material3.DatePicker
-import androidx.compose.material3.DatePickerDialog
-import androidx.compose.material3.DatePickerFormatter
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Snackbar
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextField
-import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.setValue
@@ -41,22 +30,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.vinilos_rabbits.R
 import com.example.vinilos_rabbits.components.Calendar
+import com.example.vinilos_rabbits.components.MySnackbar
 import com.example.vinilos_rabbits.components.PrizeAutocomplete
-import com.example.vinilos_rabbits.repositories.PrizeRepository
+import com.example.vinilos_rabbits.viewmodels.PrizeToArtistUiState
 import com.example.vinilos_rabbits.viewmodels.PrizeViewModel
-import java.time.Instant
-import java.time.LocalDate
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
+import kotlinx.coroutines.delay
 import java.util.Date
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddReward(
+    artistId: Int,
     modifier: Modifier
 ){
     var prizeId: Int by remember { mutableIntStateOf(0) }
@@ -65,9 +52,31 @@ fun AddReward(
     }
     val prizeViewModel: PrizeViewModel = viewModel()
     val prizeToArtistUiState = prizeViewModel.prizeToArtistUiState
-    var dateSelected = remember {
+    val dateSelected = remember {
         mutableStateOf<Date?>(null)
     }
+
+    val isEnable = prizeToArtistUiState != PrizeToArtistUiState.Loading
+                && dateSelected.value != null && prizeId > 0
+
+    when (prizeToArtistUiState) {
+        is PrizeToArtistUiState.Success -> {
+            showSnackbar = true
+        }
+        is PrizeToArtistUiState.Loading -> showSnackbar = false
+        is PrizeToArtistUiState.Error -> showSnackbar = false
+        is PrizeToArtistUiState.Off -> {}
+    }
+
+    LaunchedEffect(showSnackbar) {
+        if(showSnackbar) {
+            delay(3000)
+            Log.i("*******", showSnackbar.toString())
+            showSnackbar = false
+
+        }
+    }
+
 
     Column(
         modifier = Modifier
@@ -82,22 +91,31 @@ fun AddReward(
         Spacer(modifier = Modifier.height(24.dp))
         Icon(Icons.Default.Star, contentDescription = "Reward icon", Modifier.size(64.dp))
         Spacer(modifier = Modifier.height(24.dp))
-        PrizeAutocomplete(onSelect = { prizeId = it})
+        PrizeAutocomplete(
+            onSelect = { prizeId = it},
+            isEnable = prizeToArtistUiState != PrizeToArtistUiState.Loading
+        )
         Spacer(modifier = Modifier.height(16.dp))
         Calendar(
             contentDescription = stringResource(R.string.aria_calendar_prize),
-            onDateSelected = { dateSelected.value = it }
+            onDateSelected = { dateSelected.value = it },
+            isEnable = prizeToArtistUiState != PrizeToArtistUiState.Loading
         )
-        Button(onClick = {
-            Log.i("prize * ", prizeId.toString())
-            Log.i("dateSelected * ", dateSelected.value.toString())
-            val prizeRepository = PrizeRepository()
-            //prizeRepository.addPrizeToArtist()
-        }) {
+        Spacer(modifier = Modifier.height(32.dp))
+        Button(
+            onClick = {
+                    prizeViewModel.addPrizeToArtist(
+                        prizeId,
+                        artistId,
+                        premiationDate=dateSelected.value as Date,
+                    )
+            },
+            enabled = isEnable
+        ) {
             Text(text = stringResource(R.string.add_reward))
         }
         MySnackbar(
-            message = "show alert",
+            message = stringResource(id = R.string.added_reward),
             showSnackbar = showSnackbar,
             modifier = Modifier
                 .background(Color.Green)
@@ -106,20 +124,3 @@ fun AddReward(
     }
 }
 
-fun addRewardToDb(){
-
-}
-
-@Composable
-fun MySnackbar(message: String, showSnackbar: Boolean, modifier: Modifier) {
-    if (showSnackbar) {
-        Snackbar(
-            modifier = modifier,
-            action = {
-                Icon(Icons.Default.Close, contentDescription = "close alert")
-            }
-        ) {
-            Text(text = message)
-        }
-    }
-}

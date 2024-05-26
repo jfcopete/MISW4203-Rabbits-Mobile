@@ -9,7 +9,10 @@ import kotlinx.coroutines.launch
 import com.example.vinilos_rabbits.repositories.PrizeRepository
 import java.io.IOException
 import androidx.lifecycle.viewModelScope
+import com.example.vinilos_rabbits.models.PrizeDto
 import com.example.vinilos_rabbits.services.AddPrizeToArtistResponse
+import java.text.SimpleDateFormat
+import java.util.Date
 
 sealed interface PrizeUiState {
     data class Success(val prizes: List<PrizeSerialized>): PrizeUiState
@@ -44,12 +47,14 @@ class PrizeViewModel: ViewModel() {
         }
     }
 
-    fun addPrizeToArtist(prizeId: Int, artistId: Int) {
+    fun addPrizeToArtist(prizeId: Int, artistId: Int, premiationDate: Date) {
         viewModelScope.launch() {
             prizeToArtistUiState = try {
                 PrizeToArtistUiState.Loading
                 val repository = PrizeRepository()
-                val response = repository.addPrizeToArtist(prizeId = prizeId, artistId= artistId)
+                val formattedDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format(premiationDate)
+                val prizeDto = PrizeDto(formattedDate)
+                val response = repository.addPrizeToArtist(prizeId = prizeId, artistId= artistId, prizeDto)
                 PrizeToArtistUiState.Success(response)
             } catch (e: IOException){
                 PrizeToArtistUiState.Error

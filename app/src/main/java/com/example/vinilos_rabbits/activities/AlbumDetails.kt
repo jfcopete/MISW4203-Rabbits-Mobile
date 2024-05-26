@@ -1,6 +1,7 @@
 package com.example.vinilos_rabbits.activities
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
@@ -12,6 +13,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -26,6 +28,7 @@ import com.example.vinilos_rabbits.services.TrackSerialized
 import com.example.vinilos_rabbits.viewmodels.AlbumUiState
 import com.example.vinilos_rabbits.viewmodels.AlbumViewModel
 import com.example.vinilos_rabbits.components.LoadingScreen
+import com.example.vinilos_rabbits.components.MySnackbar
 import com.example.vinilos_rabbits.models.Collector
 import kotlinx.coroutines.delay
 
@@ -73,12 +76,11 @@ fun AlbumDetails(
                 }
 
                 if (showConfirmation) {
-                    Text(
-                        "Comentario agregado exitosamente",
+                    MySnackbar(
+                        message = "Comentario agregado exitosamente",
+                        showSnackbar = showConfirmation,
                         modifier = Modifier
-                            .align(Alignment.Center)
-                            .padding(16.dp),
-                        style = TextStyle(color = MaterialTheme.colorScheme.primary)
+                            .background(Color.Green)
                     )
                 }
 

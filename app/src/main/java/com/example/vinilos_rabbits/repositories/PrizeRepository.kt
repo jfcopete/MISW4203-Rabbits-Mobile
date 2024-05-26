@@ -1,5 +1,6 @@
 package com.example.vinilos_rabbits.repositories
 
+import com.example.vinilos_rabbits.models.PrizeDto
 import com.example.vinilos_rabbits.services.AddPrizeToArtistResponse
 import com.example.vinilos_rabbits.services.CacheVinilosService
 import com.example.vinilos_rabbits.services.PrizeSerialized
@@ -20,8 +21,8 @@ class PrizeRepository {
         return response
     }
 
-    suspend fun addPrizeToArtist(prizeId: Int, artistId: Int): AddPrizeToArtistResponse{
-        val response = VinilosApi.retrofitService.addPrizeToArtist(prizeId, artistId)
+    suspend fun addPrizeToArtist(prizeId: Int, artistId: Int, prizeDto: PrizeDto): AddPrizeToArtistResponse{
+        val response = VinilosApi.retrofitService.addPrizeToArtist(prizeId, artistId, prizeDto)
 
         return response
     }

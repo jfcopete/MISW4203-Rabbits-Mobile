@@ -1,8 +1,7 @@
 package com.example.vinilos_rabbits.services
 
-import com.example.vinilos_rabbits.models.Album
-import com.example.vinilos_rabbits.models.Artist
 import com.example.vinilos_rabbits.models.Comment
+import com.example.vinilos_rabbits.models.PrizeDto
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.Retrofit
 import kotlinx.serialization.json.Json
@@ -41,7 +40,11 @@ interface VinilosApiService {
     suspend fun getPrizes(): List<PrizeSerialized>
 
     @POST("prizes/{prizeId}/musicians/{artistId}")
-    suspend fun addPrizeToArtist(@Path("prizeId") prizeId: Int, @Path("artistId") artistId: Int): AddPrizeToArtistResponse
+    suspend fun addPrizeToArtist(
+        @Path("prizeId") prizeId: Int,
+        @Path("artistId") artistId: Int,
+        @Body prizeDto: PrizeDto
+    ): AddPrizeToArtistResponse
 
     @POST("albums/{albumId}/comments")
     suspend fun addComment(@Path("albumId") albumId: Int, @Body comment: Comment): Comment

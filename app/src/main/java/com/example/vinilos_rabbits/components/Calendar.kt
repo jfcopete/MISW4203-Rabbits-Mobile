@@ -31,7 +31,8 @@ import java.util.Date
 @Composable
 fun Calendar(
     contentDescription: String,
-    onDateSelected: (date: Date) -> Unit
+    onDateSelected: (date: Date) -> Unit,
+    isEnable: Boolean
 ){
     val openDatePickerDialog = remember { mutableStateOf(false) }
     var dateResult by remember {
@@ -58,11 +59,15 @@ fun Calendar(
     ) {
         TextField(
             value = dateResult,
+            enabled = isEnable,
             onValueChange = {
                 openDatePickerDialog.value = true
             },
             leadingIcon = {
-                IconButton(onClick = { openDatePickerDialog.value = true }) {
+                IconButton(
+                    enabled = isEnable,
+                    onClick = { openDatePickerDialog.value = true },
+                ) {
                     Icon(
                         imageVector = Icons.Outlined.DateRange,
                         contentDescription = contentDescription

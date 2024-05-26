@@ -22,7 +22,10 @@
     <string name="collector_detail_navbar_title">Detalle de Coleccionista</string>
     <string name="aria_calendar_prize">Seleccionar fecha de premiación</string>
 
-    <string name="add_reward">"Agregar premio"</string>
+    <string name="add_reward">Agregar premio</string>
+    <string name="added_reward">Premio agregad{o</string>
+
+    <string name="close_notification">Cerrar notificación</string>
 
 
 </resources>
