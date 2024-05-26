@@ -13,6 +13,7 @@ class CacheVinilosService() {
     }
 
         private var collectors: List<CollectorSerialized>? = null
+        private var prizes: List<PrizeSerialized>? = null
 
         fun addCollectors(newCollectors: List<CollectorSerialized>){
             if(newCollectors.isNotEmpty()) {
@@ -22,6 +23,16 @@ class CacheVinilosService() {
 
         fun getCollectors(): List<CollectorSerialized>?{
             return collectors
+        }
+
+        fun addPrizes(newPrizes: List<PrizeSerialized>){
+            if(newPrizes.isNotEmpty()){
+                prizes = newPrizes
+            }
+        }
+
+        fun getPrizes(): List<PrizeSerialized>? {
+            return prizes
         }
 
 }

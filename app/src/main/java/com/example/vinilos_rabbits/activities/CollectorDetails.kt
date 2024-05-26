@@ -1,9 +1,7 @@
 package com.example.vinilos_rabbits.activities
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,18 +13,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import coil.compose.rememberAsyncImagePainter
 import com.example.vinilos_rabbits.components.ErrorScreen
 import com.example.vinilos_rabbits.components.LoadingScreen
-import com.example.vinilos_rabbits.services.ArtistSerialized
 import com.example.vinilos_rabbits.services.CollectorSerialized
-import com.example.vinilos_rabbits.viewmodels.AlbumUiState
-import com.example.vinilos_rabbits.viewmodels.AlbumViewModel
-import com.example.vinilos_rabbits.viewmodels.ArtistUiState
-import com.example.vinilos_rabbits.viewmodels.ArtistViewModel
 import com.example.vinilos_rabbits.viewmodels.CollectorUiState
 import com.example.vinilos_rabbits.viewmodels.CollectorViewModel
-import com.example.vinilos_rabbits.viewmodels.HomeUiState
 
 @Composable
 fun CollectorDetails(
