@@ -1,22 +1,18 @@
 package com.example.vinilos_rabbits.activities
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Snackbar
 import androidx.compose.runtime.Composable
 import androidx.compose.material3.Text
 import androidx.compose.runtime.LaunchedEffect
@@ -78,7 +74,6 @@ fun AddReward(
         if(showSnackbar) {
             delay(3000)
             showSnackbar = false
-
         }
     }
 
@@ -94,7 +89,7 @@ fun AddReward(
             style = MaterialTheme.typography.headlineSmall
         )
         Spacer(modifier = Modifier.height(24.dp))
-        Icon(Icons.Default.Star, contentDescription = "Reward icon", Modifier.size(64.dp))
+        Icon(Icons.Default.Star, contentDescription = stringResource(R.string.aria_prize_icon), Modifier.size(64.dp))
         Spacer(modifier = Modifier.height(24.dp))
         PrizeAutocomplete(
             onSelect = { prizeId = it},
@@ -116,9 +111,13 @@ fun AddReward(
                     )
                 captureState = true
             },
-            enabled = isEnable
+            enabled = isEnable,
+
         ) {
-            Text(text = stringResource(R.string.add_reward))
+            Text(
+                text = stringResource(R.string.add_reward_button),
+                color = if (isEnable) Color.Black else Color.White
+            )
         }
         MySnackbar(
             message = stringResource(id = R.string.added_reward),

@@ -24,11 +24,11 @@ fun CollectorCard(
 ) {
     Column(
         modifier = Modifier
-            .padding(16.dp)
+            .padding(8.dp)
             .fillMaxWidth()
             .clickable(onClick = onCollectorDetails)
     ) {
-        Text(text = name, fontWeight = FontWeight.Bold)
-        Text(text = email)
+        Text(text = name, fontWeight = FontWeight.Bold, fontSize = 24.sp)
+        Text(text = email, fontSize = 18.sp)
     }
 }

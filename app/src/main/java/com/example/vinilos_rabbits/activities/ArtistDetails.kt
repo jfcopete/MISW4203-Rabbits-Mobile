@@ -12,10 +12,12 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -70,8 +72,8 @@ fun ArtistDetailsScreen(
 ) {
     Column(modifier = Modifier.padding(16.dp)) {
         Image(
+            contentDescription = "portada del album",
             painter = rememberAsyncImagePainter(artist.image),
-            contentDescription = artist.name,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(200.dp)
@@ -82,7 +84,8 @@ fun ArtistDetailsScreen(
         ) {
             Text(
                 text = artist.name,
-                style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold),
+                style = TextStyle(fontSize = 22.sp, fontWeight = FontWeight.Bold),
+                color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.weight(1f)
             )
             TextButton(
@@ -98,12 +101,14 @@ fun ArtistDetailsScreen(
         Spacer(modifier = Modifier.height(10.dp))
         Text(
             text = artist.description,
-            style = TextStyle(fontSize = 16.sp)
+            style = TextStyle(fontSize = 20.sp),
+            color = Color.White
         )
         Spacer(modifier = Modifier.height(10.dp))
         Text(
             text = "Born: ${artist.birthDate}",
-            style = TextStyle(fontSize = 14.sp)
+            style = TextStyle(fontSize = 20.sp),
+            color = Color.White
         )
     }
 }

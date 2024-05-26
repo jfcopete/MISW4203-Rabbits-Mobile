@@ -4,15 +4,16 @@
     <string name="welcome_description">Expertos en musica</string>
     <string name="loading">Cargando</string>
     <string name="loading_failed">Valide su acceso a internet</string>
-    <string name="back_button">Regresar</string>
+    <string name="back_button">Volver atras</string>
     <string name="songs">Canciones</string>
     <string name="comments">Comentarios</string>
     
     <string name="album">Album</string>
+    <string name="genere">Genero</string>
 
     <string name="artist">Artista</string>
     <string name="artist_reward">Premiar</string>
-    <string name="add_reward_to_artist">Agregar premio al artista</string>
+    <string name="add_reward_to_artist">Ir a agregar premio</string>
 
 
 
@@ -20,12 +21,25 @@
     <string name="album_detail_navbar_title">Detalle del album</string>
     <string name="artist_detail_navbar_title">Detalle de Artista</string>
     <string name="collector_detail_navbar_title">Detalle de Coleccionista</string>
-    <string name="aria_calendar_prize">Seleccionar fecha de premiación</string>
 
     <string name="add_reward">Agregar premio</string>
-    <string name="added_reward">Premio agregad{o</string>
+    <string name="add_reward_button">Agregar premio al artista</string>
+    <string name="added_reward">Premio agregado</string>
+    <string name="select">Seleccionar</string>
+    <string name="prize_date">Fecha del premio</string>
+    <string name="prize">Premio</string>
 
     <string name="close_notification">Cerrar notificación</string>
+    <string name="add_commentary">Agrega un comentario</string>
+
+    <string name="aria_album_list">Listado de albumes</string>
+    <string name="aria_artist_list">Listado de artistas</string>
+    <string name="aria_collector_list">Listado de coleccionistas</string>
+    <string name="aria_calendar_prize">Seleccionar fecha de premiación</string>
+    <string name="aria_album_image">Imagen del album</string>
+    <string name="aria_album_date">Fecha</string>
+    <string name="aria_prize_icon">Icono de premio</string>
+
 
 
 </resources>

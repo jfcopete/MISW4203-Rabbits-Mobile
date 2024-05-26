@@ -13,7 +13,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.vinilos_rabbits.R
 import com.example.vinilos_rabbits.repositories.PrizeRepository
 import com.example.vinilos_rabbits.services.PrizeSerialized
 import com.example.vinilos_rabbits.viewmodels.PrizeUiState
@@ -45,6 +47,7 @@ fun PrizeAutocomplete(
 
     ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = { expanded = !expanded }) {
         TextField(
+            label = { Text(stringResource(R.string.prize)) },
             value = prizeSelected,
             onValueChange = {},
             readOnly = true,
