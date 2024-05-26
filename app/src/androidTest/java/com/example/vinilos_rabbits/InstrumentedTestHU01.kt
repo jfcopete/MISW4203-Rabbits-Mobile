@@ -3,7 +3,6 @@ package com.example.vinilos_rabbits
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.filters.LargeTest
-import com.example.vinilos_rabbits.activities.HomeApp
 import com.example.vinilos_rabbits.activities.HomeScreen
 import com.example.vinilos_rabbits.services.Comment
 import com.example.vinilos_rabbits.services.AlbumSerialized

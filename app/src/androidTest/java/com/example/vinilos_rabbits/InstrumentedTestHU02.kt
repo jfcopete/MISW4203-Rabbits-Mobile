@@ -1,19 +1,10 @@
 package com.example.vinilos_rabbits
-
-import androidx.compose.ui.test.SemanticsMatcher
-import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.filters.LargeTest
 import com.example.vinilos_rabbits.activities.HomeApp
-import androidx.compose.ui.test.waitUntilAtLeastOneExists
-import com.example.vinilos_rabbits.activities.HomeScreen
-import com.example.vinilos_rabbits.services.Comment
-import com.example.vinilos_rabbits.services.AlbumSerialized
-import com.example.vinilos_rabbits.services.PerformerSerialized
-import com.example.vinilos_rabbits.services.TrackSerialized
-import com.example.vinilos_rabbits.viewmodels.HomeUiState
+
 
 import org.junit.Test
 import org.junit.Rule

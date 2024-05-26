@@ -2,7 +2,6 @@ package com.example.vinilos_rabbits
 
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
-import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.example.vinilos_rabbits.activities.HomeApp
@@ -13,9 +12,6 @@ class InstrumentedTestHU14 {
     val ARTISTA: String = "Artista"
     val RUBEN: String = "Rubén Blades Bellido de Luna"
     val PREMIAR_BUTTON: String = "Premiar"
-    val GRAMMY_AWARD: String = "Grammy Award"
-    val CALENDAR: String = "Seleccionar fecha de premiación"
-    val SELECT_AWARD: String ="PrizeDropdownTextField"
 
     @get:Rule
     val rule = createComposeRule()

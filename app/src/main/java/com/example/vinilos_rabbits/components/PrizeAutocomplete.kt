@@ -1,6 +1,5 @@
 package com.example.vinilos_rabbits.components
 
-import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -13,9 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.vinilos_rabbits.repositories.PrizeRepository
 import com.example.vinilos_rabbits.services.PrizeSerialized
 import com.example.vinilos_rabbits.viewmodels.PrizeUiState
 import com.example.vinilos_rabbits.viewmodels.PrizeViewModel
