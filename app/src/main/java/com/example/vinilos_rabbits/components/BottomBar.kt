@@ -25,41 +25,41 @@ fun VinilosBottomBar(
     modifier: Modifier = Modifier
 ) {
     BottomAppBar(
-        modifier = modifier.height(51.dp),
+        modifier = modifier.height(54.dp),
         containerColor = MaterialTheme.colorScheme.primaryContainer,
         contentColor = MaterialTheme.colorScheme.onPrimaryContainer // Ajusta el color de los íconos
     ) {
 
         IconButton(
             onClick = { navController.navigate(VinilosScreen.Start.name) },
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f).height(50.dp)
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_album),
                 contentDescription = stringResource(R.string.aria_album_list),
-                modifier = Modifier.height(48.dp).width(48.dp)
+                modifier = Modifier.height(50.dp).width(50.dp)
             )
         }
 
         IconButton(
             onClick = { navController.navigate(VinilosScreen.Artist.name) },
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f).height(50.dp)
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_artist),
                 contentDescription = stringResource(R.string.aria_artist_list),
-                modifier = Modifier.height(48.dp).width(48.dp)
+                modifier = Modifier.height(50.dp).width(50.dp)
             )
         }
 
         IconButton(
             onClick = { navController.navigate(VinilosScreen.Collector.name) },
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f).height(50.dp)
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_collector),
                 contentDescription = stringResource(R.string.aria_collector_list),
-                modifier = Modifier.height(48.dp).width(48.dp)
+                modifier = Modifier.height(50.dp).width(50.dp)
             )
         }
     }
