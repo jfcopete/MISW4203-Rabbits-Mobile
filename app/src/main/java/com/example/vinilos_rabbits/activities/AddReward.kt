@@ -116,7 +116,6 @@ fun AddReward(
         ) {
             Text(
                 text = stringResource(R.string.add_reward_button),
-                color = if (isEnable) Color.Black else Color.White
             )
         }
         MySnackbar(

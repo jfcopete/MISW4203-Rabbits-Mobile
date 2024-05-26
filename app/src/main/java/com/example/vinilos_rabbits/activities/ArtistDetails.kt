@@ -102,13 +102,13 @@ fun ArtistDetailsScreen(
         Text(
             text = artist.description,
             style = TextStyle(fontSize = 20.sp),
-            color = Color.White
+
         )
         Spacer(modifier = Modifier.height(10.dp))
         Text(
             text = "Born: ${artist.birthDate}",
             style = TextStyle(fontSize = 20.sp),
-            color = Color.White
+
         )
     }
 }
