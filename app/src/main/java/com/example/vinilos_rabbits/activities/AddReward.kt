@@ -50,6 +50,9 @@ fun AddReward(
     var showSnackbar by remember {
         mutableStateOf(false)
     }
+    var captureState by remember {
+        mutableStateOf(false)
+    }
     val prizeViewModel: PrizeViewModel = viewModel()
     val prizeToArtistUiState = prizeViewModel.prizeToArtistUiState
     val dateSelected = remember {
@@ -61,7 +64,10 @@ fun AddReward(
 
     when (prizeToArtistUiState) {
         is PrizeToArtistUiState.Success -> {
-            showSnackbar = true
+            if(!showSnackbar && captureState) {
+                showSnackbar = true
+                captureState = false
+            }
         }
         is PrizeToArtistUiState.Loading -> showSnackbar = false
         is PrizeToArtistUiState.Error -> showSnackbar = false
@@ -71,7 +77,6 @@ fun AddReward(
     LaunchedEffect(showSnackbar) {
         if(showSnackbar) {
             delay(3000)
-            Log.i("*******", showSnackbar.toString())
             showSnackbar = false
 
         }
@@ -109,6 +114,7 @@ fun AddReward(
                         artistId,
                         premiationDate=dateSelected.value as Date,
                     )
+                captureState = true
             },
             enabled = isEnable
         ) {
