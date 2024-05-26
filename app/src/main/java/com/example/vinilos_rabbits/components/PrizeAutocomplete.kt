@@ -1,6 +1,5 @@
 package com.example.vinilos_rabbits.components
 
-import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -55,6 +54,7 @@ fun PrizeAutocomplete(
                 expanded = expanded
             )},
             modifier = Modifier.menuAnchor()
+
         )
         ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
             options.forEach { item ->
