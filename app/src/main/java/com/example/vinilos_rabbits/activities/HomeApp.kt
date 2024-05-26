@@ -36,6 +36,7 @@ import com.example.vinilos_rabbits.components.VinilosBottomBar
 import com.example.vinilos_rabbits.utils.VinilosScreen
 import androidx.compose.foundation.lazy.items
 import com.example.vinilos_rabbits.viewmodels.ArtistViewModel
+import com.example.vinilos_rabbits.viewmodels.CollectorViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,6 +50,7 @@ fun HomeApp() {
     )
     val homeViewModel: HomeViewModel = viewModel()
     val artistViewModel: ArtistViewModel = viewModel()
+    val collectorViewModel: CollectorViewModel = viewModel()
 
     Scaffold(
         //modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -110,8 +112,21 @@ fun HomeApp() {
                     navigation=navController
                 )
             }
-            composable(route = VinilosScreen.Collector.name){
-                CollectorList(
+            composable(route = VinilosScreen.Collector.name) {
+                CollectorListScreen(
+                    onCollectorDetails = { collectorId ->
+                        collectorViewModel.setCollectorId(collectorId)
+                        navController.navigate(VinilosScreen.CollectorDetail.name)
+                    },
+                    collectorUiState = collectorViewModel.collectorUiState,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(dimensionResource(R.dimen.padding_medium))
+                )
+            }
+            composable(route = VinilosScreen.CollectorDetail.name) {
+                CollectorDetails(
+                    collectorId = collectorViewModel.collectorIdSelected,
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(dimensionResource(R.dimen.padding_medium))

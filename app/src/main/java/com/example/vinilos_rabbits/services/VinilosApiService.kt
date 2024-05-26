@@ -45,6 +45,9 @@ interface VinilosApiService {
 
     @POST("albums/{albumId}/comments")
     suspend fun addComment(@Path("albumId") albumId: Int, @Body comment: Comment): Comment
+
+    @GET("collectors/{collectorId}")
+    suspend fun getCollectorById(@Path("collectorId") collectorId: Int): CollectorSerialized
 }
 
 object VinilosApi {
