@@ -44,23 +44,23 @@ fun VinilosBottomBar(
 
         IconButton(
             onClick = { navController.navigate(VinilosScreen.Artist.name) },
-            modifier = Modifier.weight(1f).height(50.dp)
+            modifier = Modifier.weight(1f).height(50.dp).testTag("artistList")
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_artist),
                 contentDescription = stringResource(R.string.aria_artist_list),
-                modifier = Modifier.height(50.dp).width(50.dp).testTag("artistList")
+                modifier = Modifier.height(50.dp).width(50.dp)
             )
         }
 
         IconButton(
             onClick = { navController.navigate(VinilosScreen.Collector.name) },
-            modifier = Modifier.weight(1f).height(50.dp)
+            modifier = Modifier.weight(1f).height(50.dp).testTag("collectorList")
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_collector),
                 contentDescription = stringResource(R.string.aria_collector_list),
-                modifier = Modifier.height(50.dp).width(50.dp).testTag("collectorList")
+                modifier = Modifier.height(50.dp).width(50.dp)
             )
         }
     }
