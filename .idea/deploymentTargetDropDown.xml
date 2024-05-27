@@ -2,24 +2,20 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="InstrumentedTestHU01">
+      <entry key="InstrumentedTestHU03">
+        <State />
+      </entry>
+      <entry key="InstrumentedTestHU05">
+        <State />
+      </entry>
+      <entry key="InstrumentedTestHU06">
+        <State />
+      </entry>
+      <entry key="InstrumentedTestHU14">
         <State />
       </entry>
       <entry key="Tests in 'com.example.vinilos_rabbits'">
-        <State>
-          <runningDeviceTargetSelectedWithDropDown>
-            <Target>
-              <type value="RUNNING_DEVICE_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="SERIAL_NUMBER" />
-                  <value value="RFCW20GJV9W" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-05-27T00:41:58.766276Z" />
-        </State>
+        <State />
       </entry>
       <entry key="app">
         <State>

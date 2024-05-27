@@ -1,7 +1,6 @@
 package com.example.vinilos_rabbits
 
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -23,16 +22,11 @@ class InstrumentedTestHU04 {
             HomeApp()
         }
         rule.waitForIdle()
-        rule.waitForIdle()
-        Thread.sleep(2000)
-        rule.onNodeWithTag("artistList").performClick()
-        rule.waitForIdle()
-        Thread.sleep(1000)
+        rule.onNodeWithTag("artistList",useUnmergedTree = true).performClick()
         rule.onNodeWithText(ARTISTA).assertExists()
         rule.waitForIdle()
         rule.onNodeWithText(SEARCH_BLADES_TEST).performClick()
         rule.waitForIdle()
-        Thread.sleep(1000)
         rule.onNodeWithText(SEARCH_BLADES_TEST).assertExists()
     }
 }
