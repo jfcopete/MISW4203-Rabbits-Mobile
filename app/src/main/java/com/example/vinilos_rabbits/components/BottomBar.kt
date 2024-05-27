@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
@@ -37,7 +38,7 @@ fun VinilosBottomBar(
             Icon(
                 painter = painterResource(id = R.drawable.ic_album),
                 contentDescription = stringResource(R.string.aria_album_list),
-                modifier = Modifier.height(50.dp).width(50.dp)
+                modifier = Modifier.height(50.dp).width(50.dp).testTag("albumList")
             )
         }
 
@@ -48,7 +49,7 @@ fun VinilosBottomBar(
             Icon(
                 painter = painterResource(id = R.drawable.ic_artist),
                 contentDescription = stringResource(R.string.aria_artist_list),
-                modifier = Modifier.height(50.dp).width(50.dp)
+                modifier = Modifier.height(50.dp).width(50.dp).testTag("artistList")
             )
         }
 
@@ -59,7 +60,7 @@ fun VinilosBottomBar(
             Icon(
                 painter = painterResource(id = R.drawable.ic_collector),
                 contentDescription = stringResource(R.string.aria_collector_list),
-                modifier = Modifier.height(50.dp).width(50.dp)
+                modifier = Modifier.height(50.dp).width(50.dp).testTag("collectorList")
             )
         }
     }

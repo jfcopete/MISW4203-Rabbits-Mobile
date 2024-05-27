@@ -31,8 +31,6 @@ import com.example.vinilos_rabbits.components.ErrorScreen
 import com.example.vinilos_rabbits.components.LoadingScreen
 import com.example.vinilos_rabbits.services.ArtistSerialized
 import com.example.vinilos_rabbits.utils.VinilosScreen
-import com.example.vinilos_rabbits.viewmodels.AlbumUiState
-import com.example.vinilos_rabbits.viewmodels.AlbumViewModel
 import com.example.vinilos_rabbits.viewmodels.ArtistUiState
 import com.example.vinilos_rabbits.viewmodels.ArtistViewModel
 import com.example.vinilos_rabbits.viewmodels.HomeUiState

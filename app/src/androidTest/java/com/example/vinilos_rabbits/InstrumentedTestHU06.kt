@@ -2,6 +2,7 @@ package com.example.vinilos_rabbits
 
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.example.vinilos_rabbits.activities.HomeApp
@@ -23,7 +24,7 @@ class InstrumentedTestHU06 {
             HomeApp()
         }
         rule.waitForIdle()
-        rule.onNodeWithContentDescription(COLECCIONISTA).performClick()
+        rule.onNodeWithTag("collectorList").performClick()
         rule.waitForIdle()
         rule.onNodeWithText(MANOLO).performClick()
         rule.waitForIdle()

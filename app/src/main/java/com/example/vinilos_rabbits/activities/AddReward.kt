@@ -24,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -89,7 +90,7 @@ fun AddReward(
             style = MaterialTheme.typography.headlineSmall
         )
         Spacer(modifier = Modifier.height(24.dp))
-        Icon(Icons.Default.Star, contentDescription = stringResource(R.string.aria_prize_icon), Modifier.size(64.dp))
+        Icon(Icons.Default.Star, contentDescription = stringResource(R.string.aria_prize_icon), Modifier.size(64.dp).testTag("icono_premio"))
         Spacer(modifier = Modifier.height(24.dp))
         PrizeAutocomplete(
             onSelect = { prizeId = it},
