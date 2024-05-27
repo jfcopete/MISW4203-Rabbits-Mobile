@@ -1,7 +1,6 @@
 package com.example.vinilos_rabbits
 
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -10,7 +9,6 @@ import org.junit.Rule
 import org.junit.Test
 
 class InstrumentedTestHU06 {
-    val COLECCIONISTA: String = "Coleccionista"
     val MANOLO: String = "Manolo Bellon"
     val NOMBRE_MANOLO: String = "Nombre: Manolo Bellon"
 
@@ -25,7 +23,7 @@ class InstrumentedTestHU06 {
         }
         Thread.sleep(2000)
         rule.waitForIdle()
-        rule.onNodeWithTag("collectorList").performClick()
+        rule.onNodeWithTag("collectorList", useUnmergedTree = true).performClick()
         rule.waitForIdle()
         Thread.sleep(3000)
         rule.onNodeWithText(MANOLO).performClick()

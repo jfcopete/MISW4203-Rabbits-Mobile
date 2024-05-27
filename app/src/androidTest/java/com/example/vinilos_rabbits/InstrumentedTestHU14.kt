@@ -1,7 +1,6 @@
 package com.example.vinilos_rabbits
 
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -10,9 +9,9 @@ import org.junit.Rule
 import org.junit.Test
 
 class InstrumentedTestHU14 {
-    val ARTISTA: String = "Artista"
     val RUBEN: String = "Rubén Blades Bellido de Luna"
     val PREMIAR_BUTTON: String = "Premiar"
+    val GRAMMY_AWARD: String = "Grammy Award"
 
     @get:Rule
     val rule = createComposeRule()
@@ -24,15 +23,17 @@ class InstrumentedTestHU14 {
             HomeApp()
         }
         rule.waitForIdle()
-        rule.onNodeWithTag("artistList").performClick()
+        rule.onNodeWithTag("artistList",useUnmergedTree = true).performClick()
         rule.waitForIdle()
-        Thread.sleep(1000)
         rule.onNodeWithText(RUBEN).performClick()
         rule.waitForIdle()
-        Thread.sleep(1000)
         rule.onNodeWithText(PREMIAR_BUTTON).performClick()
         rule.waitForIdle()
-        // No pude darle click al dropdownlist
-
+        rule.onNodeWithTag("Premio",useUnmergedTree = true).performClick()
+        rule.waitForIdle()
+        rule.waitForIdle()
+        rule.onNodeWithText(GRAMMY_AWARD).performClick()
+        rule.waitForIdle()
+        // No pude darle click al calendar
     }
 }

@@ -106,7 +106,8 @@ fun HomeApp() {
                     artistUiState = artistViewModel.artistUiState,
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(dimensionResource(R.dimen.padding_medium)),
+                        .padding(dimensionResource(R.dimen.padding_medium))
+                    ,
                     navigation=navController
                 )
             }

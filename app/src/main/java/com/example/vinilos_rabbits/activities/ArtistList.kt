@@ -9,6 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.vinilos_rabbits.services.ArtistSerialized
 import androidx.compose.foundation.lazy.items
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.vinilos_rabbits.components.ArtistCard
@@ -29,7 +31,8 @@ fun ArtistListScreen(
 
     Column(
         modifier = modifier
-            .padding(1.dp),
+            .padding(1.dp)
+            .semantics { contentDescription="artistList" },
     ) {
         when (artistUiState) {
             is ArtistUiState.Loading -> LoadingScreen()

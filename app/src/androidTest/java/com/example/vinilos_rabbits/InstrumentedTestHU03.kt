@@ -22,7 +22,7 @@ class InstrumentedTestHU03 {
         }
         rule.waitForIdle()
         Thread.sleep(2000)
-        rule.onNodeWithTag(artistList).performClick()
+        rule.onNodeWithTag(artistList, useUnmergedTree = true).performClick()
         rule.onNodeWithText(artistName).assertExists()
     }
 
