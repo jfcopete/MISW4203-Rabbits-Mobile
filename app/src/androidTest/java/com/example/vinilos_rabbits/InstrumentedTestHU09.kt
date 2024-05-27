@@ -8,22 +8,25 @@ import com.example.vinilos_rabbits.activities.HomeApp
 import org.junit.Rule
 import org.junit.Test
 
-class InstrumentedTestHU03 {
-    val artistName: String = "Artista"
-    val artistList: String = "artistList"
+class InstrumentedTestHU09 {
+    val MANOLO: String = "Manolo Bellon"
+    val NOMBRE_MANOLO: String = "Nombre: Manolo Bellon"
+
     @get:Rule
     val rule = createComposeRule()
 
     @Test
-    fun checkArtistList() {
+    fun checkCollectorsDetail() {
 
         rule.setContent {
             HomeApp()
         }
         rule.waitForIdle()
-        Thread.sleep(2000)
-        rule.onNodeWithTag(artistList, useUnmergedTree = true).performClick()
-        rule.onNodeWithText(artistName).assertExists()
+        rule.onNodeWithTag("collectorList", useUnmergedTree = true).performClick()
+        rule.waitForIdle()
+        rule.onNodeWithText(MANOLO).performClick()
+        rule.waitForIdle()
+        Thread.sleep(1000)
+        rule.onNodeWithText(NOMBRE_MANOLO).assertExists()
     }
-
 }

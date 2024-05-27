@@ -19,4 +19,8 @@ class CollectorRepository() {
 
         return response
     }
+
+    suspend fun getCollectorById(collectorId: Int): CollectorSerialized {
+        return VinilosApi.retrofitService.getCollectorById(collectorId)
+    }
 }

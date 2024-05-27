@@ -8,25 +8,32 @@ import com.example.vinilos_rabbits.activities.HomeApp
 import org.junit.Rule
 import org.junit.Test
 
-class InstrumentedTestHU04 {
-    val ARTISTA: String = "Artista"
-    val SEARCH_BLADES_TEST: String = "Rubén Blades Bellido de Luna"
+class InstrumentedTestHU14 {
+    val RUBEN: String = "Rubén Blades Bellido de Luna"
+    val PREMIAR_BUTTON: String = "Premiar"
+    val GRAMMY_AWARD: String = "Grammy Award"
 
     @get:Rule
     val rule = createComposeRule()
 
     @Test
-    fun checkArtistDetails() {
+    fun checkAddAward() {
 
         rule.setContent {
             HomeApp()
         }
         rule.waitForIdle()
         rule.onNodeWithTag("artistList",useUnmergedTree = true).performClick()
-        rule.onNodeWithText(ARTISTA).assertExists()
         rule.waitForIdle()
-        rule.onNodeWithText(SEARCH_BLADES_TEST).performClick()
+        rule.onNodeWithText(RUBEN).performClick()
         rule.waitForIdle()
-        rule.onNodeWithText(SEARCH_BLADES_TEST).assertExists()
+        rule.onNodeWithText(PREMIAR_BUTTON).performClick()
+        rule.waitForIdle()
+        rule.onNodeWithTag("Premio",useUnmergedTree = true).performClick()
+        rule.waitForIdle()
+        rule.waitForIdle()
+        rule.onNodeWithText(GRAMMY_AWARD).performClick()
+        rule.waitForIdle()
+        // No pude darle click al calendar
     }
 }

@@ -8,8 +8,9 @@ enum class VinilosScreen(@StringRes val title: Int) {
     AlbumDetail(title = R.string.album_detail_navbar_title),
     Artist(title = R.string.artist),
     ArtistDetail(title = R.string.artist_detail_navbar_title),
-    Collector(title = R.string.collector),;
-
+    Collector(title = R.string.collector),
+    AddReward(title = R.string.add_reward),
+    CollectorDetail(title = R.string.collector_detail_navbar_title),
 }
 
 enum class VinilosCategory(@StringRes val title: Int){
