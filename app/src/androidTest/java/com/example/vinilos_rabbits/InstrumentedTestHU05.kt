@@ -24,7 +24,9 @@ class InstrumentedTestHU05 {
             HomeApp()
         }
         rule.waitForIdle()
+        Thread.sleep(2000)
         rule.onNodeWithTag(COLECCIONISTA_LIST).performClick()
+        Thread.sleep(1000)
         rule.onNodeWithText(COLECCIONISTA).assertExists()
     }
 }

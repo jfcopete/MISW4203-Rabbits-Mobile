@@ -23,11 +23,14 @@ class InstrumentedTestHU06 {
         rule.setContent {
             HomeApp()
         }
+        Thread.sleep(2000)
         rule.waitForIdle()
         rule.onNodeWithTag("collectorList").performClick()
         rule.waitForIdle()
+        Thread.sleep(3000)
         rule.onNodeWithText(MANOLO).performClick()
         rule.waitForIdle()
+        Thread.sleep(1000)
         rule.onNodeWithText(NOMBRE_MANOLO).assertExists()
     }
 }

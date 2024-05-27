@@ -29,10 +29,15 @@ class InstrumentedTestHU02 {
         rule.setContent {
             HomeApp()
         }
+        rule.waitForIdle()
         rule.onNodeWithText("Vinilos rabbits").assertExists()
+        Thread.sleep(2000)
+        rule.waitForIdle()
         rule.onNodeWithText("Buscando América").assertExists()
         rule.onNodeWithText("Poeta del pueblo").assertExists()
         rule.onNodeWithText("Buscando América").performClick()
+        rule.waitForIdle()
+        Thread.sleep(1000)
         rule.onNodeWithText("Canciones").assertExists()
     }
 }

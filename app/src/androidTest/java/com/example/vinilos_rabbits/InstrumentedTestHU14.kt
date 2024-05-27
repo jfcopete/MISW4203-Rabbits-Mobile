@@ -26,11 +26,11 @@ class InstrumentedTestHU14 {
         rule.waitForIdle()
         rule.onNodeWithTag("artistList").performClick()
         rule.waitForIdle()
+        Thread.sleep(1000)
         rule.onNodeWithText(RUBEN).performClick()
         rule.waitForIdle()
+        Thread.sleep(1000)
         rule.onNodeWithText(PREMIAR_BUTTON).performClick()
-        rule.waitForIdle()
-        rule.onNodeWithContentDescription(ARTISTA).performClick()
         rule.waitForIdle()
         // No pude darle click al dropdownlist
 

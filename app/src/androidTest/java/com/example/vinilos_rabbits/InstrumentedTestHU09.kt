@@ -28,6 +28,7 @@ class InstrumentedTestHU09 {
         rule.waitForIdle()
         rule.onNodeWithText(MANOLO).performClick()
         rule.waitForIdle()
+        Thread.sleep(1000)
         rule.onNodeWithText(NOMBRE_MANOLO).assertExists()
     }
 }
