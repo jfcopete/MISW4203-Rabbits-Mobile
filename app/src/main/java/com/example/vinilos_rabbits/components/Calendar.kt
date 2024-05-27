@@ -1,6 +1,7 @@
 package com.example.vinilos_rabbits.components
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.DateRange
 import androidx.compose.material3.DatePicker
@@ -21,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import com.example.vinilos_rabbits.R
 import java.time.Instant
 import java.time.ZoneId
@@ -51,21 +53,17 @@ fun Calendar(
         val dateFormat = Date.from(instant)
         onDateSelected(dateFormat)
     }
-
-    Surface(
-        modifier = Modifier.clickable {
-            openDatePickerDialog.value = true
-        }
-    ) {
         TextField(
             value = dateResult,
             enabled = isEnable,
             onValueChange = {
                 openDatePickerDialog.value = true
             },
+            label = { Text(stringResource(R.string.prize_date)) },
             leadingIcon = {
                 IconButton(
                     enabled = isEnable,
+                    modifier = Modifier.size(48.dp),
                     onClick = { openDatePickerDialog.value = true },
                 ) {
                     Icon(
@@ -75,7 +73,6 @@ fun Calendar(
                 }
             }
         )
-    }
     if (openDatePickerDialog.value) {
         val confirmEnabled = remember {
             derivedStateOf { datePickerState.selectedDateMillis != null }
@@ -91,7 +88,7 @@ fun Calendar(
                     },
                     enabled = confirmEnabled.value
                 ) {
-                    Text("OK")
+                    Text(stringResource(R.string.select))
                 }
             },
         ){

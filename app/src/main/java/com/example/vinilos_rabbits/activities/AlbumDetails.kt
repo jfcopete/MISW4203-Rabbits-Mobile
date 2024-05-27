@@ -39,7 +39,6 @@ fun AlbumDetails(
 ) {
     val albumViewModel: AlbumViewModel = viewModel()
     val albumUiState by albumViewModel.albumUiState.collectAsState()
-    val newCommentUiState by albumViewModel.newCommentUiState.collectAsState()
     val error by albumViewModel.error.collectAsState()
 
     // Llamada a la solicitud
@@ -108,7 +107,7 @@ fun AlbumDetailsScreen(
         item {
             Image(
                 painter = rememberAsyncImagePainter(album.cover),
-                contentDescription = album.name,
+                contentDescription = stringResource(R.string.aria_album_image),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(150.dp)
@@ -118,19 +117,17 @@ fun AlbumDetailsScreen(
             Spacer(modifier = Modifier.height(20.dp))
             Text(text = album.description)
             Spacer(modifier = Modifier.height(20.dp))
-
             Text(text = stringResource(R.string.songs), style = TextStyle(
                 fontSize = 24.sp
             ))
             Tracks(tracks = album.tracks)
-
             Text(text = stringResource(R.string.comments), style = TextStyle(
                 fontSize = 24.sp
             ))
             Comments(comments = album.comments)
         }
         item {
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(18.dp))
 
             Text(
                 text = "¿Eres coleccionista?",
@@ -138,11 +135,13 @@ fun AlbumDetailsScreen(
                 textAlign = TextAlign.Start
             )
         }
-        item {
+        item(
+        ) {
             Switch(
+
                 checked = isAddingComment,
                 onCheckedChange = { isAddingComment = it },
-                modifier = Modifier.padding(8.dp)
+                modifier = Modifier.padding(8.dp),
             )
         }
 
@@ -188,7 +187,7 @@ fun AddCommentSection(
         TextField(
             value = commentText,
             onValueChange = onCommentTextChanged,
-            label = { Text("Agrega un comentario") },
+            label = { Text(stringResource(R.string.add_commentary)) },
             modifier = Modifier.weight(1f)
         )
         Spacer(modifier = Modifier.width(8.dp))

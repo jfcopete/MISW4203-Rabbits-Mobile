@@ -36,7 +36,7 @@ fun ArtistCard(
             ) {
                 Image(
                     painter = rememberAsyncImagePainter(model = image),
-                    contentDescription = name,
+                    contentDescription = "Foto del artista",
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(150.dp)
@@ -49,14 +49,15 @@ fun ArtistCard(
                     Text(
                         text = name,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp,
+                        fontSize = 24.sp,
                         color = MaterialTheme.colorScheme.primary,
                         textAlign = TextAlign.Center,
                     )
+                    Spacer(modifier = Modifier.height(16.dp))
                     Text(
                         text = if (description.length > 85) description.take(85) + "..." else description,
-                        fontSize = 14.sp,
-                        color = Color.Gray,
+                        fontSize = 18.sp,
+                        color = MaterialTheme.colorScheme.secondary,
                         modifier = Modifier.fillMaxWidth(), // Esto hace que el Text ocupe todo el ancho disponible
                         textAlign = TextAlign.Justify // Esto centra el texto horizontalmente
                     )

@@ -50,32 +50,38 @@ fun CollectorDetailsScreen(collector: CollectorSerialized) {
     LazyColumn(modifier = Modifier.padding(16.dp)) {
         item {
             Text(text = "Nombre: ${collector.name}",
-                style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                style = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.Bold)
             )
             Spacer(modifier = Modifier.height(8.dp))
-            Text(text = "Email: ${collector.email}")
+            Text(
+                text = "Email: ${collector.email}",
+                fontSize = 18.sp
+            )
             Spacer(modifier = Modifier.height(8.dp))
-            Text(text = "Telefono: ${collector.telephone}")
+            Text(
+                text = "Telefono: ${collector.telephone}",
+                fontSize = 18.sp
+            )
             Spacer(modifier = Modifier.height(20.dp))
             Text(text = "Artistas Favoritos",
-                style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                style = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.Bold)
             )
             collector.favoritePerformers.forEach { performer ->
-                Text(text = performer.name)
+                Text(text = performer.name, fontSize = 18.sp)
             }
             Spacer(modifier = Modifier.height(20.dp))
             Text(text = "ID de Álbumes favoritos",
-                style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                style = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.Bold)
             )
             collector.collectorAlbums.forEach { album ->
-                Text(text = album.id.toString())
+                Text(text = album.id.toString(), fontSize = 18.sp)
             }
             Spacer(modifier = Modifier.height(20.dp))
             Text(text = "Comentarios",
-                style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                style = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.Bold)
             )
             collector.comments.forEach { comment ->
-                Text(text = comment.description)
+                Text(text = comment.description, fontSize = 18.sp)
             }
             Spacer(modifier = Modifier.height(20.dp))
         }
